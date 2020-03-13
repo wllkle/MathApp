@@ -37,7 +37,7 @@ public class Logger {
         _type = Colors.ANSI_RESET + "[" + color + _type + Colors.ANSI_RESET + "]";
         String currentTime = LocalTime.now().toString();
         while (currentTime.length() != 18)
-            currentTime += '0';
+            currentTime = currentTime.concat("0");
 
         String time = "[" + Colors.ANSI_GREEN + currentTime + Colors.ANSI_RESET + "]  ";
 
@@ -57,7 +57,7 @@ public class Logger {
     }
 
     public static void input() {
-        System.out.print("      " + Colors.ANSI_YELLOW + ">" + Colors.ANSI_RESET + "> ");
+        System.out.print("\t\t\t\t\t\t\t  " + Colors.ANSI_BLUE + ">" + Colors.ANSI_YELLOW + ">" + Colors.ANSI_RESET + "> ");
     }
 
     public static void system(String message) {
@@ -105,7 +105,10 @@ public class Logger {
     }
 
     public static void error(Exception ex) {
-        print(log(LogType.ERROR, ex.getMessage()), true);
+        // System.out.println(ex);
+        String msg = ex.getMessage();
+        msg = msg.substring(0, 1).toUpperCase() + msg.substring(1);
+        print(log(LogType.ERROR, msg), true);
     }
 }
 

@@ -1,11 +1,10 @@
 package mathapp.socket.server.iterative;
 
-import java.util.UUID;
 import java.io.*;
 import java.net.*;
 
 import mathapp.*;
-import mathapp.socket.Constants;
+import mathapp.Constants;
 import mathapp.socket.server.Request;
 import mathapp.socket.server.ServerConnection;
 
@@ -46,42 +45,52 @@ public class IterativeServer extends Thread {
                     double[] args;
 
                     while ((data = input.readLine()) != null) {
-                        requestCount++;
-                        params = Params.fromString(data);
-                        args = params.getArgs();
+                        try {
+                            requestCount++;
+                            Logger.server("Request #" + requestCount);
+                            Logger.server("Ingest " + Colors.ANSI_YELLOW + data + Colors.ANSI_RESET);
+                            params = Params.fromString(data);
+                            args = params.getArgs();
 
-                        switch (params.getOperand()) {
-                            case "+":
-                                result = MathService.add(args[0], args[1]);
-                                break;
-                            case "-":
-                                result = MathService.sub(args[0], args[1]);
-                                break;
-                            case "*":
-                                result = MathService.mul(args[0], args[1]);
-                                break;
-                            case "/":
-                                result = MathService.div(args[0], args[1]);
-                                break;
-                            case "x":
-                                result = MathService.exp(args[0], args[1]);
-                                break;
-                            default:
-                                result = 0;
-                                break;
+                            switch (params.getOperand()) {
+                                case "+":
+                                    result = MathService.add(args[0], args[1]);
+                                    break;
+                                case "-":
+                                    result = MathService.sub(args[0], args[1]);
+                                    break;
+                                case "*":
+                                    result = MathService.mul(args[0], args[1]);
+                                    break;
+                                case "/":
+                                    result = MathService.div(args[0], args[1]);
+                                    break;
+                                case "^":
+                                    result = MathService.exp(args[0], args[1]);
+                                    break;
+                                default:
+                                    result = 0;
+                                    break;
+                            }
+
+                            request = connection.addRequest(params, requestCount, result);
+
+                            Logger.server(request.getId() + " - " + params.toString() + " (Result " + result + ")");
+
+                            respond(output, result.toString());
+                        } catch (Exception ex) {
+                            Logger.error(ex);
                         }
-
-                        request = connection.addRequest(params, requestCount, result);
-                        Logger.server("Request #" + requestCount);
-                        Logger.server(request.getId() + " - " + params.toString() + " (Result " + result + ")");
-                        respond(output, result.toString());
                     }
                     Logger.server(connection.getId() + " disconnected");
                     client.close();
+                    requestCount = 0;
                 } catch (Exception ex) {
-                    Logger.server(Colors.ANSI_RED + ex.getMessage() + Colors.ANSI_RESET + " " + ex.getClass().getTypeName());
-                    Logger.system("Exiting");
-                    System.exit(1);
+                    Logger.error(ex);
+                    if (ex.getClass() != SocketException.class) {
+                        Logger.server(Colors.ANSI_RED + ex.getMessage() + Colors.ANSI_RESET + " " + ex.getClass().getTypeName());
+                        Logger.system("Exiting");
+                    }
                 }
             }
             serverSocket.close();
