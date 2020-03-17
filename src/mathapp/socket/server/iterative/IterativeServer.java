@@ -5,98 +5,68 @@ import java.net.*;
 
 import mathapp.*;
 import mathapp.Constants;
-import mathapp.socket.server.Request;
 import mathapp.socket.server.ServerConnection;
-
-import java.util.HashMap;
+import mathapp.socket.server.ServerConnectionLog;
+import mathapp.socket.server.ServerThread;
 
 public class IterativeServer extends Thread {
 
     @Override
     public void run() {
-
         boolean running = true;
-        String data;
-        int connectionCount = 0, requestCount = 0;
+        int connectionCount = 0;
+        ServerThread currentClient = null;
+        String failedIp;
 
+        ServerConnectionLog log = new ServerConnectionLog();
         ServerConnection connection;
-        Request request;
-        HashMap<String, ServerConnection> connectionLog = new HashMap<>();
 
         try {
             ServerSocket serverSocket = new ServerSocket(Constants.PORT);
             Logger.server("Iterative server listening on port " + Constants.PORT);
 
             while (running) {
-                try {
-                    Socket client = serverSocket.accept();
+                try (Socket client = serverSocket.accept()) {
                     connectionCount++;
-
-                    connection = new ServerConnection(client, connectionCount, connectionLog);
+                    connection = new ServerConnection(client, connectionCount, log);
 
                     Logger.server("Connection #" + connectionCount);
-                    Logger.server(connection.getId() + " connected with IP " + connection.getIpAddress());
+                    Logger.server(connection.getId() + " connected from " + connection.getIpAddress());
 
-                    BufferedReader input = new BufferedReader(new InputStreamReader(client.getInputStream()));
-                    PrintWriter output = new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
+                    currentClient = new ServerThread(connection);
+                    currentClient.start();
 
-                    Object result;
-                    Params params;
-                    double[] args;
-
-                    while ((data = input.readLine()) != null) {
-                        try {
-                            requestCount++;
-                            Logger.server("Request #" + requestCount);
-                            Logger.server("Ingest " + Colors.ANSI_YELLOW + data + Colors.ANSI_RESET);
-                            params = Params.fromString(data);
-                            args = params.getArgs();
-
-                            switch (params.getOperand()) {
-                                case "+":
-                                    result = MathService.add(args[0], args[1]);
-                                    break;
-                                case "-":
-                                    result = MathService.sub(args[0], args[1]);
-                                    break;
-                                case "*":
-                                    result = MathService.mul(args[0], args[1]);
-                                    break;
-                                case "/":
-                                    result = MathService.div(args[0], args[1]);
-                                    break;
-                                case "^":
-                                    result = MathService.exp(args[0], args[1]);
-                                    break;
-                                default:
-                                    result = 0;
-                                    break;
-                            }
-
-                            request = connection.addRequest(params, requestCount, result);
-
-                            Logger.server(request.getId() + " - " + params.toString() + " (Result " + result + ")");
-
-                            respond(output, result.toString());
+                    while (currentClient.isRunning()) {
+                        try (Socket failClient = serverSocket.accept()) {
+                            failedIp = failClient.getInetAddress().toString().replace("/", "");
+                            Logger.server("Connection from " + Colors.ANSI_YELLOW + failedIp + Colors.ANSI_RESET + " was blocked");
+                            respond(new PrintWriter(new OutputStreamWriter(failClient.getOutputStream())),
+                                    "A client is already connected, please wait until they disconnect.");
                         } catch (Exception ex) {
                             Logger.error(ex);
                         }
                     }
+
                     Logger.server(connection.getId() + " disconnected");
-                    client.close();
-                    requestCount = 0;
+                    currentClient.interrupt();
+                    currentClient = null;
+
                 } catch (Exception ex) {
                     Logger.error(ex);
                     if (ex.getClass() != SocketException.class) {
                         Logger.server(Colors.ANSI_RED + ex.getMessage() + Colors.ANSI_RESET + " " + ex.getClass().getTypeName());
                         Logger.system("Exiting");
                     }
+
+                    if (currentClient != null) {
+                        currentClient.interrupt();
+                        currentClient = null;
+                    }
                 }
             }
-            serverSocket.close();
-            System.exit(1);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+
+        } catch (Exception ex) {
+            Logger.error(ex);
         }
     }
 

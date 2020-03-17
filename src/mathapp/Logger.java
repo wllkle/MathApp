@@ -105,9 +105,13 @@ public class Logger {
     }
 
     public static void error(Exception ex) {
-        // System.out.println(ex);
+        ex.printStackTrace();
         String msg = ex.getMessage();
-        msg = msg.substring(0, 1).toUpperCase() + msg.substring(1);
+        try {
+            msg = msg.substring(0, 1).toUpperCase() + msg.substring(1);
+        } catch (Exception e) {
+            msg = "An error occurred";
+        }
         print(log(LogType.ERROR, msg), true);
     }
 }

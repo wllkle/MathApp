@@ -25,6 +25,12 @@ public class Client extends ClientBase {
             ingest = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             output = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
 
+            // if (ingestRead == null) {
+            //  running = false;
+            // Logger.error("error happened lol");
+            // throw new Exception("ex");
+            // }
+
             Params params;
             String result;
 
