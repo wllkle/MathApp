@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.PrintWriter;
 
 public class ClientBase {
+    protected static final int MAX_ATTEMPTS = 5;
+
     protected static Params getValidInput(BufferedReader input) {
         Params params = null;
         String test, permittedOperands = "+-*/^";
@@ -118,12 +120,12 @@ public class ClientBase {
         return value;
     }
 
+    private static String insertString(String originalString, String stringToBeInserted, int index) {
+        return new StringBuilder(originalString).insert(index, stringToBeInserted).toString();
+    }
+
     protected static void respond(PrintWriter pw, String data) {
         pw.println(data);
         pw.flush();
-    }
-
-    private static String insertString(String originalString, String stringToBeInserted, int index) {
-        return new StringBuilder(originalString).insert(index, stringToBeInserted).toString();
     }
 }

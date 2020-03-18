@@ -20,13 +20,13 @@ public class Logger {
             case SERVER:
                 color = Colors.ANSI_BLUE;
                 break;
-            case APP:
+            case WORKER:
                 color = Colors.ANSI_YELLOW;
                 break;
-            case QUEUE:
+            case APP:
                 color = Colors.ANSI_PURPLE;
                 break;
-            case QUEUEMGR:
+            case CLIENT:
                 color = Colors.ANSI_CYAN;
                 break;
             case ERROR:
@@ -41,7 +41,7 @@ public class Logger {
 
         String time = "[" + Colors.ANSI_GREEN + currentTime + Colors.ANSI_RESET + "]  ";
 
-        return time + _type + padding + message;
+        return time + _type + padding + message + Colors.ANSI_RESET;
     }
 
     private static void print(String message, boolean line) {
@@ -63,7 +63,6 @@ public class Logger {
     public static void system(String message) {
         system(message, true);
     }
-
     public static void system(String message, boolean line) {
         print(log(LogType.SYSTEM, message), line);
     }
@@ -71,7 +70,6 @@ public class Logger {
     public static void app(String message) {
         app(message, true);
     }
-
     public static void app(String message, boolean line) {
         print(log(LogType.APP, message), line);
     }
@@ -79,33 +77,29 @@ public class Logger {
     public static void server(String message) {
         server(message, true);
     }
-
     public static void server(String message, boolean line) {
         print(log(LogType.SERVER, message), line);
     }
 
-    public static void queue(String message) {
-        queue(message, true);
+    public static void worker(String message) {
+        worker(message, true);
+    }
+    public static void worker(String message, boolean line) {
+        print(log(LogType.WORKER, message), line);
     }
 
-    public static void queue(String message, boolean line) {
-        print(log(LogType.QUEUE, message), line);
+    public static void client(String message) {
+        client(message, true);
     }
-
-    public static void queueM(String message) {
-        queueM(message, true);
-    }
-
-    public static void queueM(String message, boolean line) {
-        print(log(LogType.QUEUEMGR, message), line);
+    public static void client(String message, boolean line) {
+        print(log(LogType.CLIENT, message), line);
     }
 
     public static void error(String message) {
         print(log(LogType.ERROR, message), true);
     }
-
     public static void error(Exception ex) {
-        ex.printStackTrace();
+//        ex.printStackTrace();
         String msg = ex.getMessage();
         try {
             msg = msg.substring(0, 1).toUpperCase() + msg.substring(1);
@@ -116,4 +110,4 @@ public class Logger {
     }
 }
 
-enum LogType {SYSTEM, APP, SERVER, QUEUE, QUEUEMGR, ERROR}
+enum LogType {SYSTEM, APP, SERVER, WORKER, CLIENT, ERROR}

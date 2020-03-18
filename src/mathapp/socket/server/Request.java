@@ -22,7 +22,7 @@ public class Request {
     }
 
     Request(Params params, int number, Object result) {
-        this.id = "[" + Colors.ANSI_CYAN + "REQUEST-" + UUID.randomUUID().toString().toUpperCase() + Colors.ANSI_RESET + "]";
+        this.id = "[" + Colors.ANSI_CYAN + UUID.randomUUID().toString().toUpperCase() + Colors.ANSI_RESET + "]";
         this.params = params;
         this.number = number;
         this.result = result;

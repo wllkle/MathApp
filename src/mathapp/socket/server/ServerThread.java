@@ -37,6 +37,8 @@ public class ServerThread extends Thread {
         try (BufferedReader input = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
              PrintWriter output = new PrintWriter(new OutputStreamWriter(this.socket.getOutputStream()))) {
 
+            respond(output, "SERVER-Connection successful");
+
             Object result;
             Params params;
             double[] args;
@@ -44,8 +46,7 @@ public class ServerThread extends Thread {
             while ((data = input.readLine()) != null) {
                 try {
                     requestCount++;
-                    Logger.server("Request #" + requestCount);
-                    Logger.server("Ingest " + Colors.ANSI_YELLOW + data + Colors.ANSI_RESET);
+                    Logger.worker("Ingest " + Colors.ANSI_YELLOW + data + Colors.ANSI_RESET);
                     params = Params.fromString(data);
                     args = params.getArgs();
 
@@ -71,19 +72,24 @@ public class ServerThread extends Thread {
                     }
 
                     request = this.connection.addRequest(params, requestCount, result);
-
-                    Logger.server(request.getId() + " - " + params.toString() + " (Result " + result + ")");
-                    respond(output, result.toString());
+                    Logger.worker("Request " + request.getId() + " " + params.toString() + " RESULT: " + Colors.ANSI_YELLOW + result.toString());
+                    respond(output, "RESULT-" + result.toString());
 
                 } catch (Exception ex) {
-                    Logger.error(ex);
                     if (ex.getClass() == SocketException.class) {
+                        Logger.server("Client " + this.connection.getId() + " disconnected");
                         this.running = false;
+                    } else {
+                        Logger.error(ex);
                     }
                 }
             }
         } catch (Exception ex) {
-            Logger.error(ex);
+            if (ex.getClass() == SocketException.class) {
+                Logger.server("Client " + this.connection.getId() + " disconnected");
+            } else {
+                Logger.error(ex);
+            }
             this.running = false;
         }
     }

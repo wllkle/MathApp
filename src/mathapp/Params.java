@@ -28,7 +28,7 @@ public class Params {
 
     @Override
     public String toString() {
-        return String.join(" " + operand + " ", Double.toString(arg1), Double.toString(arg2));
+        return Colors.ANSI_YELLOW+ String.join(" " + operand + " ", Double.toString(arg1), Double.toString(arg2)) +Colors.ANSI_RESET;
     }
 
     public static Params fromString(String value) throws IllegalArgumentException {

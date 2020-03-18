@@ -18,7 +18,7 @@ public class ServerConnection {
     public ServerConnection(Socket socket, int number, ServerConnectionLog log) {
         this.socket = socket;
         this.uuid = UUID.randomUUID().toString().toUpperCase();
-        this.id = "[" + Colors.ANSI_CYAN + "CLIENT-" + uuid + Colors.ANSI_RESET + "]";
+        this.id = "[" + Colors.ANSI_CYAN + uuid + Colors.ANSI_RESET + "]";
         this.number = number;
         this.log = log;
         this.requests = new ArrayList<>();

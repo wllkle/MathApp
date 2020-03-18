@@ -3,43 +3,64 @@ package mathapp.socket.client;
 import java.io.*;
 import java.net.*;
 
-import mathapp.ClientBase;
-import mathapp.Colors;
-import mathapp.Logger;
-import mathapp.Params;
-import mathapp.Constants;
+import mathapp.*;
 
 public class Client extends ClientBase {
-    public static void main(String[] args) {
-        Socket socket;
-        BufferedReader input, ingest;
-        PrintWriter output;
 
+    public static void main(String[] args) {
         boolean running = true;
+        int connectionAttempt = 0;
+        Socket socket = null;
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in)), ingest = null;
+        PrintWriter output;
+        Params params;
 
         try {
-            socket = new Socket("localhost", Constants.PORT);
-            Logger.server("Connection established");
+            while (socket == null) {
+                try {
+                    connectionAttempt++;
+                    Logger.client("Attempting to connect to server on port " + Constants.PORT + ", attempt #" + connectionAttempt);
+                    socket = new Socket("localhost", Constants.PORT);
+                    ingest = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            input = new BufferedReader(new InputStreamReader(System.in));
+                    Response response = Response.fromString(ingest.readLine());
+                    if (response.getType().equals("ERROR")) {
+                        throw new IllegalAccessException();
+                    }
+
+                } catch (Exception ex) {
+                    if (ex.getClass() != IllegalAccessException.class) {
+                        Logger.error(ex);
+                    }
+
+                    Logger.client("Connection refused, attempts " + connectionAttempt);
+                    Thread.sleep(2000);
+                    socket = null;
+
+                    if (connectionAttempt == MAX_ATTEMPTS) {
+                        running = false;
+                        Logger.client("Max connection attempts, exiting");
+                        System.exit(1);
+                        break;
+                    }
+                }
+            }
+
+            Logger.client("Connection established");
+
             ingest = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             output = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
-
-            // if (ingestRead == null) {
-            //  running = false;
-            // Logger.error("error happened lol");
-            // throw new Exception("ex");
-            // }
-
-            Params params;
-            String result;
 
             while (running) {
                 try {
                     params = getValidInput(input);
                     respond(output, params.buildString());
-                    result = ingest.readLine();
-                    Logger.server("Result " + Colors.ANSI_YELLOW + result + Colors.ANSI_RESET);
+
+                    try {
+                        Response.fromString(ingest.readLine());
+                    } catch (Exception ex) {
+                        Logger.error(ex);
+                    }
 
                     if (!getYesNo(input, "Do you want to do another calculation?")) {
                         running = false;
@@ -52,10 +73,13 @@ public class Client extends ClientBase {
             output.close();
             input.close();
 
+            socket.close();
+            Logger.client("Connection closed");
         } catch (Exception ex) {
             Logger.error(ex);
         }
 
+        Logger.client("Client closing");
         System.exit(1);
     }
 }
