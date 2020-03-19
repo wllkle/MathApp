@@ -2,16 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cedbbda6-f614-4d37-8955-38efd66e2621" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/mathapp/Response.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/ClientBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/ClientBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mathapp/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/Logger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mathapp/Params.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/Params.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/socket/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mathapp/socket/server/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/server/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mathapp/socket/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mathapp/socket/server/ServerConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/server/ServerConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mathapp/socket/server/ServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/server/ServerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/socket/server/iterative/IterativeServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/server/iterative/IterativeServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ConcurrentServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ConcurrentServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ThreadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ThreadManager.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,65 +30,10 @@
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/ServerConnectionLog.java">
+            <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/iterative/IterativeServer.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
-                  <folding>
-                    <element signature="e#179#180#0" expanded="true" />
-                    <element signature="e#221#222#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mathapp/socket/client/Client.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="690">
-                  <caret line="46" column="13" lean-forward="true" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mathapp/ClientBase.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
-                  <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="method#getValidInput#0;class#ClientBase#0" />
-                    <element signature="method#getYesNo#0;class#ClientBase#0" />
-                    <element signature="method#insertString#0;class#ClientBase#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mathapp/Response.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-                  <folding>
-                    <element signature="e#511#512#0" expanded="true" />
-                    <element signature="e#538#539#0" expanded="true" />
-                    <element signature="e#572#573#0" expanded="true" />
-                    <element signature="e#602#603#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/Request.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="195">
-                  <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+                <state relative-caret-position="705">
+                  <caret line="47" column="21" lean-forward="true" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -98,38 +42,13 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/iterative/IterativeServer.java">
+            <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ConcurrentServer.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1035">
-                  <caret line="69" column="21" lean-forward="true" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="21" />
+                <state relative-caret-position="390">
+                  <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/ServerConnection.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#796#797#0" expanded="true" />
-                    <element signature="e#830#831#0" expanded="true" />
-                    <element signature="e#859#860#0" expanded="true" />
-                    <element signature="e#889#890#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ThreadManager.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="60">
-                  <caret line="4" selection-start-line="4" selection-end-line="4" />
                 </state>
               </provider>
             </entry>
@@ -137,8 +56,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/Server.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="375">
-                  <caret line="28" selection-start-line="28" selection-end-line="28" />
+                <state relative-caret-position="225">
+                  <caret line="15" column="40" lean-forward="true" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -150,14 +69,30 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/mathapp/Logger.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="390">
-                  <caret line="26" column="43" lean-forward="true" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
+                <state relative-caret-position="263">
+                  <caret line="24" column="22" lean-forward="true" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
                   <folding>
                     <element signature="method#input#0;class#Logger#0" />
                     <element signature="method#error#1;class#Logger#0" />
+                    <element signature="e#3292#3293#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/ServerConnectionLog.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="165">
+                  <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+                  <folding>
+                    <element signature="e#179#180#0" expanded="true" />
+                    <element signature="e#221#222#0" expanded="true" />
+                    <element signature="e#288#289#0" expanded="true" />
+                    <element signature="e#332#333#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -166,12 +101,13 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/ServerThread.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="780">
-                  <caret line="73" column="30" lean-forward="true" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
+                <state relative-caret-position="861">
+                  <caret line="85" column="105" lean-forward="true" selection-start-line="85" selection-start-column="105" selection-end-line="85" selection-end-column="105" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#664#665#0" expanded="true" />
                     <element signature="e#699#700#0" expanded="true" />
+                    <element signature="e#784#785#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -180,10 +116,52 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/mathapp/Params.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="315">
-                  <caret line="30" column="132" selection-start-line="30" selection-start-column="132" selection-end-line="30" selection-end-column="132" />
+                <state relative-caret-position="345">
+                  <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
                   <folding>
                     <element signature="method#getArgs#0;class#Params#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/ServerConnection.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="255">
+                  <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#847#848#0" expanded="true" />
+                    <element signature="e#877#878#0" expanded="true" />
+                    <element signature="e#1146#1147#0" expanded="true" />
+                    <element signature="e#1182#1183#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ThreadManager.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="315">
+                  <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#328#329#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/Request.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="30">
+                  <caret line="2" column="22" lean-forward="true" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+                  <folding>
+                    <element signature="e#254#255#0" expanded="true" />
+                    <element signature="e#279#280#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -222,27 +200,28 @@
         <option value="$PROJECT_DIR$/src/mathapp/Colors.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/mathapp/socket/server/ServerBase.java" />
-        <option value="$PROJECT_DIR$/src/mathapp/socket/server/Server.java" />
-        <option value="$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ConcurrentServer.java" />
         <option value="$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ServerThread.java" />
         <option value="$PROJECT_DIR$/src/mathapp/socket/server/ServerProcess.java" />
-        <option value="$PROJECT_DIR$/src/mathapp/socket/server/ServerConnectionLog.java" />
         <option value="$PROJECT_DIR$/src/mathapp/socket/client/ClientConnection.java" />
         <option value="$PROJECT_DIR$/src/mathapp/Response.java" />
         <option value="$PROJECT_DIR$/src/mathapp/socket/client/Client.java" />
         <option value="$PROJECT_DIR$/src/mathapp/ClientBase.java" />
+        <option value="$PROJECT_DIR$/src/mathapp/socket/server/iterative/IterativeServer.java" />
+        <option value="$PROJECT_DIR$/src/mathapp/socket/server/ServerConnectionLog.java" />
+        <option value="$PROJECT_DIR$/src/mathapp/socket/server/Server.java" />
+        <option value="$PROJECT_DIR$/src/mathapp/Params.java" />
         <option value="$PROJECT_DIR$/src/mathapp/socket/server/ServerConnection.java" />
         <option value="$PROJECT_DIR$/src/mathapp/socket/server/Request.java" />
-        <option value="$PROJECT_DIR$/src/mathapp/socket/server/iterative/IterativeServer.java" />
-        <option value="$PROJECT_DIR$/src/mathapp/Params.java" />
-        <option value="$PROJECT_DIR$/src/mathapp/socket/server/ServerThread.java" />
+        <option value="$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ConcurrentServer.java" />
         <option value="$PROJECT_DIR$/src/mathapp/Logger.java" />
+        <option value="$PROJECT_DIR$/src/mathapp/socket/server/ServerThread.java" />
+        <option value="$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ThreadManager.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="60" />
-    <option name="y" value="-19" />
+    <option name="x" value="120" />
+    <option name="y" value="-15" />
     <option name="width" value="2296" />
     <option name="height" value="1194" />
   </component>
@@ -251,6 +230,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -299,13 +279,28 @@
               <item name="mathapp" type="462c0819:PsiDirectoryNode" />
               <item name="socket" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="concurrent" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MathApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MathApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="mathapp" type="462c0819:PsiDirectoryNode" />
+              <item name="socket" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
               <item name="iterative" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MathApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MathApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="mathapp" type="462c0819:PsiDirectoryNode" />
+              <item name="Logger.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -411,18 +406,19 @@
       <workItem from="1584124586578" duration="10886000" />
       <workItem from="1584323833358" duration="2103000" />
       <workItem from="1584377887202" duration="16404000" />
-      <workItem from="1584460613913" duration="33702000" />
+      <workItem from="1584460613913" duration="33739000" />
+      <workItem from="1584554808629" duration="14150000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136804000" />
+    <option name="totallyTimeSpent" value="150991000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13354531" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13434023" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -451,7 +447,7 @@
       <window_info anchor="right" id="Maven" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="8" />
       <window_info anchor="right" id="Palette&#9;" order="9" />
-      <window_info anchor="right" x="-1207" y="269" width="1089" height="1007" id="Run" order="10" side_tool="true" type="FLOATING" weight="0.35541698" />
+      <window_info active="true" anchor="right" x="-1319" y="243" width="1089" height="1007" id="Run" order="10" side_tool="true" type="FLOATING" visible="true" weight="0.35541698" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -505,30 +501,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ConcurrentServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ThreadManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-13.0.2/lib/src.zip!/java.base/java/net/Socket.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="419">
@@ -536,24 +508,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/ServerConnectionLog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
-          <folding>
-            <element signature="e#179#180#0" expanded="true" />
-            <element signature="e#221#222#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/client/ClientConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/client/ClientConnection.java" />
     <entry file="jar://C:/Program Files/Java/jdk-13.0.2/lib/src.zip!/java.base/java/io/BufferedReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="419">
@@ -574,47 +529,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/client/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="46" column="13" lean-forward="true" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/ServerConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#796#797#0" expanded="true" />
-            <element signature="e#830#831#0" expanded="true" />
-            <element signature="e#859#860#0" expanded="true" />
-            <element signature="e#889#890#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mathapp/Response.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
-          <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
           <folding>
-            <element signature="e#511#512#0" expanded="true" />
-            <element signature="e#538#539#0" expanded="true" />
-            <element signature="e#572#573#0" expanded="true" />
-            <element signature="e#602#603#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/Request.java">
+    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+        <state relative-caret-position="225">
+          <caret line="15" column="40" lean-forward="true" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/iterative/IterativeServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="47" column="21" lean-forward="true" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -623,43 +568,94 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mathapp/Params.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="30" column="132" selection-start-line="30" selection-start-column="132" selection-end-line="30" selection-end-column="132" />
+        <state relative-caret-position="345">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
           <folding>
             <element signature="method#getArgs#0;class#Params#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/ServerThread.java">
+    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/ServerConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="73" column="30" lean-forward="true" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
+        <state relative-caret-position="255">
+          <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#664#665#0" expanded="true" />
-            <element signature="e#699#700#0" expanded="true" />
+            <element signature="e#847#848#0" expanded="true" />
+            <element signature="e#877#878#0" expanded="true" />
+            <element signature="e#1146#1147#0" expanded="true" />
+            <element signature="e#1182#1183#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/Request.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="22" lean-forward="true" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+          <folding>
+            <element signature="e#254#255#0" expanded="true" />
+            <element signature="e#279#280#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mathapp/Logger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="43" lean-forward="true" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
+        <state relative-caret-position="263">
+          <caret line="24" column="22" lean-forward="true" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
           <folding>
             <element signature="method#input#0;class#Logger#0" />
             <element signature="method#error#1;class#Logger#0" />
+            <element signature="e#3292#3293#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/iterative/IterativeServer.java">
+    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ConcurrentServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="69" column="21" lean-forward="true" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="21" />
+        <state relative-caret-position="390">
+          <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/ServerConnectionLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+          <folding>
+            <element signature="e#179#180#0" expanded="true" />
+            <element signature="e#221#222#0" expanded="true" />
+            <element signature="e#288#289#0" expanded="true" />
+            <element signature="e#332#333#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/ServerThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="861">
+          <caret line="85" column="105" lean-forward="true" selection-start-line="85" selection-start-column="105" selection-end-line="85" selection-end-column="105" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#664#665#0" expanded="true" />
+            <element signature="e#699#700#0" expanded="true" />
+            <element signature="e#784#785#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ThreadManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#328#329#0" expanded="true" />
           </folding>
         </state>
       </provider>

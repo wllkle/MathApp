@@ -20,14 +20,12 @@ public class Logger {
             case SERVER:
                 color = Colors.ANSI_BLUE;
                 break;
-            case WORKER:
+            case CLIENT:
                 color = Colors.ANSI_YELLOW;
                 break;
+            case WORKER:
             case APP:
                 color = Colors.ANSI_PURPLE;
-                break;
-            case CLIENT:
-                color = Colors.ANSI_CYAN;
                 break;
             case ERROR:
                 color = Colors.ANSI_RED;
@@ -63,6 +61,7 @@ public class Logger {
     public static void system(String message) {
         system(message, true);
     }
+
     public static void system(String message, boolean line) {
         print(log(LogType.SYSTEM, message), line);
     }
@@ -70,6 +69,7 @@ public class Logger {
     public static void app(String message) {
         app(message, true);
     }
+
     public static void app(String message, boolean line) {
         print(log(LogType.APP, message), line);
     }
@@ -77,6 +77,7 @@ public class Logger {
     public static void server(String message) {
         server(message, true);
     }
+
     public static void server(String message, boolean line) {
         print(log(LogType.SERVER, message), line);
     }
@@ -84,6 +85,7 @@ public class Logger {
     public static void worker(String message) {
         worker(message, true);
     }
+
     public static void worker(String message, boolean line) {
         print(log(LogType.WORKER, message), line);
     }
@@ -91,6 +93,7 @@ public class Logger {
     public static void client(String message) {
         client(message, true);
     }
+
     public static void client(String message, boolean line) {
         print(log(LogType.CLIENT, message), line);
     }
@@ -98,6 +101,7 @@ public class Logger {
     public static void error(String message) {
         print(log(LogType.ERROR, message), true);
     }
+
     public static void error(Exception ex) {
 //        ex.printStackTrace();
         String msg = ex.getMessage();
@@ -107,6 +111,10 @@ public class Logger {
             msg = "An error occurred";
         }
         print(log(LogType.ERROR, msg), true);
+    }
+
+    public static String formatId(String value) {
+        return "[" + Colors.ANSI_BLUE + value + Colors.ANSI_RESET + "]";
     }
 }
 

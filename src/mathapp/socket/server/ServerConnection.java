@@ -1,29 +1,25 @@
 package mathapp.socket.server;
 
 import mathapp.Colors;
+import mathapp.Logger;
 import mathapp.Params;
 
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class ServerConnection {
     private Socket socket;
-    private String uuid;
     private String id;
-    private int number;
     private ServerConnectionLog log;
     private ArrayList<Request> requests;
 
     public ServerConnection(Socket socket, int number, ServerConnectionLog log) {
         this.socket = socket;
-        this.uuid = UUID.randomUUID().toString().toUpperCase();
-        this.id = "[" + Colors.ANSI_CYAN + uuid + Colors.ANSI_RESET + "]";
-        this.number = number;
+        this.id = "C" + number;
         this.log = log;
         this.requests = new ArrayList<>();
 
-        log.addItem(uuid, this);
+        log.addItem(id, this);
     }
 
     public Socket getSocket() {
@@ -38,18 +34,22 @@ public class ServerConnection {
         return Colors.ANSI_GREEN + this.socket.getInetAddress().toString().replace('/', ' ').trim() + Colors.ANSI_RESET;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
     public ArrayList<Request> getRequests() {
         return this.requests;
     }
 
     public Request addRequest(Params params, int number, Object result) {
-        Request request = new Request(params, number, result);
+        Request request = new Request(this, params, number, result);
         this.requests.add(request);
-        this.log.addItem(this.uuid, this);
+        this.log.addItem(this.id, this);
         return request;
+    }
+
+    public void close() {
+        try {
+            this.socket.close();
+        } catch (Exception ex) {
+            Logger.error(ex);
+        }
     }
 }
