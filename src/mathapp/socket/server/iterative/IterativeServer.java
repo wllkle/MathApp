@@ -18,7 +18,7 @@ public class IterativeServer extends Thread {
     @Override
     public void run() {
         boolean running = true;
-        int connectionCount = 0, requestCount = 0;
+        int connectionCount = 0, requestCount;
 
         ServerConnectionLog log = new ServerConnectionLog();
         ServerConnection connection;
@@ -36,6 +36,7 @@ public class IterativeServer extends Thread {
                 try {
                     client = serverSocket.accept();
                     connectionCount++;
+                    requestCount = 0;
 
                     connection = new ServerConnection(client, connectionCount, log);
 
