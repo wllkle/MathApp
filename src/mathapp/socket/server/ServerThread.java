@@ -42,48 +42,25 @@ public class ServerThread extends Thread {
              PrintWriter output = new PrintWriter(new OutputStreamWriter(this.socket.getOutputStream()))) {
 
             respond(output, "SERVER-Connection successful");
+            Logger.worker(Logger.formatId(this.connection.getId()) + "Worker thread started");
 
-            Object result;
             Params params;
-            double[] args;
-            String resultString;
+            String result;
 
             while ((data = input.readLine()) != null) {
                 try {
                     requestCount++;
                     params = Params.fromString(data);
-                    args = params.getArgs();
 
-                    switch (params.getOperand()) {
-                        case "+":
-                            result = MathService.add(args[0], args[1]);
-                            break;
-                        case "-":
-                            result = MathService.sub(args[0], args[1]);
-                            break;
-                        case "*":
-                            result = MathService.mul(args[0], args[1]);
-                            break;
-                        case "/":
-                            result = MathService.div(args[0], args[1]);
-                            break;
-                        case "^":
-                            result = MathService.exp(args[0], args[1]);
-                            break;
-                        default:
-                            result = 0;
-                            break;
-                    }
-
-                    resultString = Colors.ANSI_YELLOW + result + Colors.ANSI_RESET;
+                    result = MathService.getResult(params);
 
                     request = this.connection.addRequest(params, requestCount, result);
-                    Logger.worker(Logger.formatId(request.getId()) + " " + params.buildString()+" ("+params.toString() + ") Result: " + resultString);
-                    respond(output, "RESULT-" + result.toString());
+                    Logger.worker(Logger.formatId(request.getId()) + params.buildString() + " (" + params.toString() + ") Result: " + result);
+                    respond(output, "RESULT-" + result);
 
                 } catch (Exception ex) {
                     if (ex.getClass() == SocketException.class) {
-                        Logger.server(Logger.formatId(this.connection.getId()) + " Client disconnected");
+                        Logger.server(Logger.formatId(this.connection.getId()) + "Client disconnected");
                         this.running = false;
                     } else {
                         Logger.error(ex);
@@ -94,7 +71,7 @@ public class ServerThread extends Thread {
             this.running = false;
         } catch (Exception ex) {
             if (ex.getClass() == SocketException.class) {
-                Logger.server(Logger.formatId(this.connection.getId()) + " Client disconnected");
+                Logger.server(Logger.formatId(this.connection.getId()) + "Client disconnected");
             } else {
                 Logger.error(ex);
             }

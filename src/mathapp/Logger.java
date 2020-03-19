@@ -37,7 +37,7 @@ public class Logger {
         while (currentTime.length() != 18)
             currentTime = currentTime.concat("0");
 
-        String time = "[" + Colors.ANSI_GREEN + currentTime + Colors.ANSI_RESET + "]  ";
+        String time = "[" + Colors.ANSI_GREEN + currentTime + Colors.ANSI_RESET + "] ";
 
         return time + _type + padding + message + Colors.ANSI_RESET;
     }
@@ -103,7 +103,7 @@ public class Logger {
     }
 
     public static void error(Exception ex) {
-//        ex.printStackTrace();
+        ex.printStackTrace();
         String msg = ex.getMessage();
         try {
             msg = msg.substring(0, 1).toUpperCase() + msg.substring(1);
@@ -114,7 +114,7 @@ public class Logger {
     }
 
     public static String formatId(String value) {
-        return "[" + Colors.ANSI_BLUE + value + Colors.ANSI_RESET + "]";
+        return "[" + Colors.ANSI_BLUE + value + Colors.ANSI_RESET + "] ";
     }
 }
 

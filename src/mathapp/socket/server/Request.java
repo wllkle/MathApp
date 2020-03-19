@@ -5,7 +5,7 @@ import mathapp.Params;
 public class Request {
     private String id;
     private Params params;
-    private Object result;
+    private String result;
 
     public String getId() {
         return this.id;
@@ -15,7 +15,7 @@ public class Request {
         return this.params;
     }
 
-    Request(ServerConnection connection, Params params, int number, Object result) {
+    Request(ServerConnection connection, Params params, int number, String result) {
         this.id = connection.getId() + "R" + number;
         this.params = params;
         this.result = result;

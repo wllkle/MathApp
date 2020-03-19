@@ -22,7 +22,7 @@ public class ServerConnection {
         log.addItem(id, this);
     }
 
-    public Socket getSocket() {
+    Socket getSocket() {
         return this.socket;
     }
 
@@ -31,14 +31,14 @@ public class ServerConnection {
     }
 
     public String getIpAddress() {
-        return Colors.ANSI_GREEN + this.socket.getInetAddress().toString().replace('/', ' ').trim() + Colors.ANSI_RESET;
+        return Colors.ANSI_GREEN + this.socket.getInetAddress().toString().replace('/', ' ').trim() + ":" + this.socket.getPort() + Colors.ANSI_RESET;
     }
 
     public ArrayList<Request> getRequests() {
         return this.requests;
     }
 
-    public Request addRequest(Params params, int number, Object result) {
+    public Request addRequest(Params params, int number, String result) {
         Request request = new Request(this, params, number, result);
         this.requests.add(request);
         this.log.addItem(this.id, this);

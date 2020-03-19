@@ -24,6 +24,7 @@ public class Server {
             Logger.system("Starting Concurrent server");
         }
 
+        Logger.blank();
         thread.start();
     }
 }

@@ -15,7 +15,7 @@ class ThreadManager {
     }
 
     void addThread(ServerThread thread) {
-        Logger.server(Logger.formatId(thread.getConnection().getId()) + " Starting worker thread");
+        Logger.server(Logger.formatId(thread.getConnection().getId()) + "Starting worker thread");
         thread.start();
         this.threads.put(UUID.randomUUID().toString().toUpperCase(), thread);
     }
@@ -24,7 +24,7 @@ class ThreadManager {
         for (Entry<String, ServerThread> threadItem : this.threads.entrySet()) {
             try {
                 if (!threadItem.getValue().isRunning()) {
-                    Logger.server(Logger.formatId(threadItem.getValue().getConnection().getId()) + " Ending worker thread");
+                    Logger.server(Logger.formatId(threadItem.getValue().getConnection().getId()) + "Ending worker thread");
                     threadItem.getValue().interrupt();
                     this.threads.remove(threadItem.getKey());
                 }

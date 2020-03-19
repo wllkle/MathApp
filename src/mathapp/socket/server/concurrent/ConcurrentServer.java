@@ -36,7 +36,7 @@ public class ConcurrentServer extends Thread {
                     threadManager.closeCompleted();
 
                     connection = new ServerConnection(client, connectionCount, log);
-                    Logger.server(Logger.formatId(connection.getId()) + " Client connected from " + connection.getIpAddress());
+                    Logger.server(Logger.formatId(connection.getId()) + "Client connected from " + connection.getIpAddress());
 
                     threadManager.addThread(new ServerThread(connection));
 
