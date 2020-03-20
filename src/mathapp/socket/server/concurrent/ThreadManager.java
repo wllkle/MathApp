@@ -1,6 +1,6 @@
 package mathapp.socket.server.concurrent;
 
-import mathapp.Logger;
+import mathapp.common.Logger;
 import mathapp.socket.server.ServerThread;
 
 import java.util.HashMap;
@@ -23,9 +23,8 @@ class ThreadManager {
     void closeCompleted() {
         for (Entry<String, ServerThread> threadItem : this.threads.entrySet()) {
             try {
-                if (!threadItem.getValue().isRunning()) {
+                if (!threadItem.getValue().isInterrupted()) {
                     Logger.server(Logger.formatId(threadItem.getValue().getConnection().getId()) + "Ending worker thread");
-                    threadItem.getValue().interrupt();
                     this.threads.remove(threadItem.getKey());
                 }
             } catch (Exception ex) {

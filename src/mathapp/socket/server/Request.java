@@ -1,6 +1,6 @@
 package mathapp.socket.server;
 
-import mathapp.Params;
+import mathapp.common.Params;
 
 public class Request {
     private String id;

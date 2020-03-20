@@ -1,4 +1,7 @@
-package mathapp;
+package mathapp.common;
+
+import java.io.InvalidObjectException;
+import java.util.Base64;
 
 public class Params {
 
@@ -24,6 +27,21 @@ public class Params {
 
     public String buildString() {
         return String.join(":", operand, Double.toString(arg1), Double.toString(arg2));
+    }
+
+    public String toBase64() {
+        return Base64.getEncoder().encodeToString(this.buildString().getBytes());
+    }
+
+    public static Params fromBase64(String value) throws IllegalArgumentException {
+        try {
+
+        } catch (Exception ex) {
+            Logger.error(ex);
+            throw new IllegalArgumentException("Invalid value");
+        }
+        String decoded = new String(Base64.getDecoder().decode(value));
+        return fromString(decoded);
     }
 
     @Override

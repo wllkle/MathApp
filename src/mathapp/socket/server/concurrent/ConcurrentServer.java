@@ -1,8 +1,8 @@
 package mathapp.socket.server.concurrent;
 
-import mathapp.Logger;
-import mathapp.Colors;
-import mathapp.Constants;
+import mathapp.common.Logger;
+import mathapp.common.Colors;
+import mathapp.common.Constants;
 import mathapp.socket.server.ServerConnection;
 import mathapp.socket.server.ServerConnectionLog;
 import mathapp.socket.server.ServerThread;
@@ -10,10 +10,9 @@ import mathapp.socket.server.ServerThread;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ConcurrentServer extends Thread {
+public class ConcurrentServer {
 
-    @Override
-    public void run() {
+    public ConcurrentServer() {
         boolean running = true;
         int connectionCount = 0;
 

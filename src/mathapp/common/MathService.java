@@ -1,4 +1,4 @@
-package mathapp;
+package mathapp.common;
 
 public class MathService {
     private static double add(double a, double b) {
@@ -42,8 +42,7 @@ public class MathService {
                 result = MathService.exp(args[0], args[1]);
                 break;
             default:
-                result = 0;
-                break;
+                return "";
         }
         return Double.toString(result);
     }

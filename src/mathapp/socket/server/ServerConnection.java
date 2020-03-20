@@ -1,20 +1,20 @@
 package mathapp.socket.server;
 
-import mathapp.Colors;
-import mathapp.Logger;
-import mathapp.Params;
+import mathapp.common.Params;
+import mathapp.socket.IOSocket;
 
+import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 
 public class ServerConnection {
-    private Socket socket;
+    private IOSocket socket;
     private String id;
     private ServerConnectionLog log;
     private ArrayList<Request> requests;
 
-    public ServerConnection(Socket socket, int number, ServerConnectionLog log) {
-        this.socket = socket;
+    public ServerConnection(Socket socket, int number, ServerConnectionLog log) throws IOException {
+        this.socket = new IOSocket(socket);
         this.id = "C" + number;
         this.log = log;
         this.requests = new ArrayList<>();
@@ -22,7 +22,7 @@ public class ServerConnection {
         log.addItem(id, this);
     }
 
-    Socket getSocket() {
+    public IOSocket getSocket() {
         return this.socket;
     }
 
@@ -31,7 +31,7 @@ public class ServerConnection {
     }
 
     public String getIpAddress() {
-        return Colors.ANSI_GREEN + this.socket.getInetAddress().toString().replace('/', ' ').trim() + ":" + this.socket.getPort() + Colors.ANSI_RESET;
+        return this.socket.getIpAddress();
     }
 
     public ArrayList<Request> getRequests() {
@@ -43,13 +43,5 @@ public class ServerConnection {
         this.requests.add(request);
         this.log.addItem(this.id, this);
         return request;
-    }
-
-    public void close() {
-        try {
-            this.socket.close();
-        } catch (Exception ex) {
-            Logger.error(ex);
-        }
     }
 }

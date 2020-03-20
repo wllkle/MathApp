@@ -1,4 +1,4 @@
-package mathapp;
+package mathapp.common;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;

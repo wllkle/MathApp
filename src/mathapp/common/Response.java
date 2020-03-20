@@ -1,6 +1,4 @@
-package mathapp;
-
-import mathapp.Logger;
+package mathapp.common;
 
 public class Response {
     private String type;

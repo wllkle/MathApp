@@ -1,4 +1,4 @@
-package mathapp;
+package mathapp.common;
 
 import java.time.LocalTime;
 

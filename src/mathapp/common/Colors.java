@@ -1,4 +1,4 @@
-package mathapp;
+package mathapp.common;
 
 // Class Colors is used to collect together all the constant definitions used in
 // printing text in a variety of colours.
