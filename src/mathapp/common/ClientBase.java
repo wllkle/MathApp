@@ -4,9 +4,8 @@ import java.io.BufferedReader;
 import java.io.PrintWriter;
 
 public class ClientBase {
-    protected static final int MAX_ATTEMPTS = 5;
-
     protected static Params getValidInput(BufferedReader input) {
+
         Params params = null;
         String test, permittedOperands = "+-*/^";
         String[] testElements;
@@ -14,7 +13,7 @@ public class ClientBase {
         boolean error;
         int operandIndex;
 
-        Logger.app("Please enter an equation eg. 89 - 36.5");
+        Logger.client("Please enter an equation eg. 89 - 36.5");
 
         while (params == null) {
             error = false;
@@ -94,7 +93,7 @@ public class ClientBase {
 
     protected static boolean getYesNo(BufferedReader input, String message) {
         boolean valueAcquired = false, value = false;
-        Logger.app(message + " y/n");
+        Logger.client(message + " y/n");
 
         while (!valueAcquired) {
             Logger.input();

@@ -9,35 +9,34 @@ import mathapp.socket.IOSocket;
 public class Client extends ClientBase {
 
     public static void main(String[] args) {
-        boolean firstRun = true;
         IOSocket socket;
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         Params params;
         String data;
+        Response response;
 
         try {
             Logger.client("Attempting to connect to server on port " + Constants.PORT);
             socket = new IOSocket(new Socket("localhost", Constants.PORT));
 
+            currentConnection:
             while ((data = socket.receive()) != null) {
-                if (firstRun) {
-                    Response.fromString(data);
-                    firstRun = false;
-                }
-
                 try {
+                    response = Response.fromString(data);
+                    switch (response.getType()) {
+                        case RESULT:
+                            if (!getYesNo(input, "Do you want to do another calculation?")) {
+                                break currentConnection;
+                            }
+                        default:
+                            break;
+                        case ERROR:
+                            break currentConnection;
+                    }
+
                     params = getValidInput(input);
-                    socket.send(params.buildString());
+                    socket.send(ResponseType.RESULT, params.buildString());
 
-                    try {
-                        Response.fromString(socket.receive());
-                    } catch (Exception ex) {
-                        Logger.error(ex);
-                    }
-
-                    if (!getYesNo(input, "Do you want to do another calculation?")) {
-                        break;
-                    }
                 } catch (Exception ex) {
                     Logger.error(ex);
                 }

@@ -37,7 +37,7 @@ public class IterativeServer {
 //                        connection.getSocket().send("SERVER-Connection successful");
                         Logger.server(Logger.formatId(connection.getId()) + "Client connected from " + connection.getIpAddress());
 
-                        connection.getSocket().send("Connected");
+                        connection.getSocket().send(ResponseType.MESSAGE, "Connected");
 
                         Params params;
                         String result;
@@ -51,7 +51,7 @@ public class IterativeServer {
 
                                 request = connection.addRequest(params, requestCount, result);
                                 Logger.worker(Logger.formatId(request.getId()) + params.buildString() + " (" + params.toString() + ") Result: " + result);
-                                connection.getSocket().send("RESULT-" + result);
+                                connection.getSocket().send(ResponseType.RESULT, result);
 
                             } catch (Exception ex) {
                                 if (ex.getClass() == SocketException.class) {

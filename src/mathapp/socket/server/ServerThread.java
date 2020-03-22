@@ -3,6 +3,7 @@ package mathapp.socket.server;
 import mathapp.common.Logger;
 import mathapp.common.MathService;
 import mathapp.common.Params;
+import mathapp.common.ResponseType;
 
 import java.net.SocketException;
 
@@ -30,7 +31,7 @@ public class ServerThread extends Thread {
             Params params;
             String result;
 
-            this.connection.getSocket().send("SERVER-Connected");
+            this.connection.getSocket().send(ResponseType.MESSAGE, "Connected");
 
             while ((data = this.connection.getSocket().receive()) != null) {
                 try {
@@ -40,17 +41,19 @@ public class ServerThread extends Thread {
 
                     request = this.connection.addRequest(params, requestCount, result);
                     Logger.worker(Logger.formatId(request.getId()) + params.buildString() + " (" + params.toString() + ") Result: " + result);
-                    this.connection.getSocket().send("RESULT-" + result);
+                    this.connection.getSocket().send(ResponseType.RESULT, result);
 
                 } catch (Exception ex) {
                     if (ex.getClass() == SocketException.class) {
-                        Logger.server(Logger.formatId(this.connection.getId()) + "Client disconnected");
                         break;
                     } else {
                         Logger.error(ex);
                     }
                 }
             }
+
+            Logger.server(Logger.formatId(this.connection.getId()) + "Client disconnected");
+
         } catch (Exception ex) {
             if (ex.getClass() == SocketException.class) {
                 Logger.server(Logger.formatId(this.connection.getId()) + "Client disconnected");

@@ -1,28 +1,30 @@
 package mathapp.common;
 
 public class Response {
-    private String type;
+    private ResponseType type;
     private String message;
 
     public Response(String type, String message) {
-        this.type = type;
         this.message = message;
 
         switch (type) {
             case "ERROR":
                 Logger.error(message);
+                this.type = ResponseType.ERROR;
                 break;
             case "RESULT":
-                Logger.client("Result: " + message);
+                Logger.server("Result: " + message);
+                this.type = ResponseType.RESULT;
                 break;
-            case "SERVER":
+            case "MESSAGE":
             default:
                 Logger.server(message);
+                this.type = ResponseType.MESSAGE;
                 break;
         }
     }
 
-    public String getType() {
+    public ResponseType getType() {
         return type;
     }
 

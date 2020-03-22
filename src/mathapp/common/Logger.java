@@ -24,7 +24,6 @@ public class Logger {
                 color = Colors.ANSI_YELLOW;
                 break;
             case WORKER:
-            case APP:
                 color = Colors.ANSI_PURPLE;
                 break;
             case ERROR:
@@ -64,14 +63,6 @@ public class Logger {
 
     public static void system(String message, boolean line) {
         print(log(LogType.SYSTEM, message), line);
-    }
-
-    public static void app(String message) {
-        app(message, true);
-    }
-
-    public static void app(String message, boolean line) {
-        print(log(LogType.APP, message), line);
     }
 
     public static void server(String message) {
@@ -118,4 +109,4 @@ public class Logger {
     }
 }
 
-enum LogType {SYSTEM, APP, SERVER, WORKER, CLIENT, ERROR}
+enum LogType {SYSTEM, SERVER, WORKER, CLIENT, ERROR}

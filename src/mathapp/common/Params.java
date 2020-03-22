@@ -35,13 +35,11 @@ public class Params {
 
     public static Params fromBase64(String value) throws IllegalArgumentException {
         try {
-
+            return fromString(Base64.getDecoder().decode(value).toString());
         } catch (Exception ex) {
             Logger.error(ex);
             throw new IllegalArgumentException("Invalid value");
         }
-        String decoded = new String(Base64.getDecoder().decode(value));
-        return fromString(decoded);
     }
 
     @Override

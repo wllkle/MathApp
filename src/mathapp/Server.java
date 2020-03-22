@@ -1,6 +1,7 @@
 package mathapp;
 
 import mathapp.common.Logger;
+import mathapp.http.server.HTTPServer;
 import mathapp.socket.server.iterative.IterativeServer;
 import mathapp.socket.server.concurrent.ConcurrentServer;
 
@@ -32,7 +33,7 @@ public class Server {
                         new ConcurrentServer();
                         break;
                     case "3":
-
+                        new HTTPServer();
                         break;
                     default:
                         Logger.input();

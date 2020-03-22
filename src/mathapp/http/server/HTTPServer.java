@@ -1,5 +1,6 @@
 package mathapp.http.server;
 
+import mathapp.common.Constants;
 import mathapp.common.Logger;
 
 import java.net.InetSocketAddress;
@@ -9,9 +10,9 @@ import com.sun.net.httpserver.*;
 import mathapp.common.MathService;
 
 public class HTTPServer {
-    public static void main(String[] args) throws Exception {
+    public HTTPServer() {
         try {
-            HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+            HttpServer server = HttpServer.create(new InetSocketAddress(Constants.PORT), 0);
             Logger.server("HTTP server started");
             server.createContext("/calc", new CalcContextHandler());
             server.setExecutor(null); // creates a default executor
@@ -45,21 +46,21 @@ public class HTTPServer {
             // write response and close
             request.getResponseBody().write(response.getBytes());
             request.getResponseBody().close();
-
         }
 
         // handle a HTTP GET request
-        public static String handleGET(HttpExchange request) throws IOException, NumberFormatException {
+        static String handleGET(HttpExchange request) throws IOException, NumberFormatException {
+            Logger.server(request.toString());
             Map<String, String> queryParameters = getQueryParameters(request);
 
             String calc = queryParameters.getOrDefault("c", "");
 
             
-            return "";
+            return "reee";
         }
 
         // parse request query parameters into a Map
-        public static Map<String, String> getQueryParameters(HttpExchange request) {
+        static Map<String, String> getQueryParameters(HttpExchange request) {
             Map<String, String> result = new HashMap<>();
             String query = request.getRequestURI().getQuery();
             if (query != null) {

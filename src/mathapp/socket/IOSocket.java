@@ -2,6 +2,7 @@ package mathapp.socket;
 
 import mathapp.common.Colors;
 import mathapp.common.Logger;
+import mathapp.common.ResponseType;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;
@@ -41,8 +42,8 @@ public class IOSocket {
     }
 
     // sends a message across the socket
-    public void send(String message) throws IOException {
-        output.println(message);
+    public void send(ResponseType type, String message) throws IOException {
+        output.println(String.join("-", type.name(), message));
         //The ensuing flush method call is necessary for the data to
         // be written to the socket data stream before the socket is closed.
         output.flush();
