@@ -13,7 +13,7 @@ public class ClientBase {
         boolean error;
         int operandIndex;
 
-        Logger.client("Please enter an equation eg. 89 - 36.5");
+        Logger.client("Please enter an calculation eg. 89 - 36.5");
 
         while (params == null) {
             error = false;

@@ -94,7 +94,7 @@ public class Logger {
     }
 
     public static void error(Exception ex) {
-        ex.printStackTrace();
+//        ex.printStackTrace();
         String msg = ex.getMessage();
         try {
             msg = msg.substring(0, 1).toUpperCase() + msg.substring(1);

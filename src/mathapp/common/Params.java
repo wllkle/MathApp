@@ -1,7 +1,6 @@
 package mathapp.common;
 
-import java.io.InvalidObjectException;
-import java.util.Base64;
+import java.util.Map;
 
 public class Params {
 
@@ -29,19 +28,6 @@ public class Params {
         return String.join(":", operand, Double.toString(arg1), Double.toString(arg2));
     }
 
-    public String toBase64() {
-        return Base64.getEncoder().encodeToString(this.buildString().getBytes());
-    }
-
-    public static Params fromBase64(String value) throws IllegalArgumentException {
-        try {
-            return fromString(Base64.getDecoder().decode(value).toString());
-        } catch (Exception ex) {
-            Logger.error(ex);
-            throw new IllegalArgumentException("Invalid value");
-        }
-    }
-
     @Override
     public String toString() {
         return Colors.ANSI_YELLOW + String.join(" " + operand + " ", Double.toString(arg1), Double.toString(arg2)) + Colors.ANSI_RESET;
@@ -56,6 +42,45 @@ public class Params {
             return new Params(params[0], Double.parseDouble(params[1]), Double.parseDouble(params[2]));
         } catch (Exception ex) {
             throw new IllegalArgumentException("Value: " + value + " Error" + ex.getMessage());
+        }
+    }
+
+    public static Params fromQueryString(Map<String, String> queryParameters) throws IllegalArgumentException {
+        String operandValue;
+        double value1, value2;
+        try {
+            operandValue = queryParameters.get("operand");
+            value1 = Double.parseDouble(queryParameters.get("arg1"));
+            value2 = Double.parseDouble(queryParameters.get("arg2"));
+
+            if (operandValue.length() > 0) {
+                switch (operandValue.substring(0, 1)) {
+                    case "a":
+                        operandValue = "+";
+                        break;
+                    case "s":
+                        operandValue = "-";
+                        break;
+                    case "m":
+                        operandValue = "*";
+                        break;
+                    case "d":
+                        operandValue = "/";
+                        break;
+                    case "e":
+                        operandValue = "^";
+                        break;
+                    default:
+                        throw new Exception();
+                }
+            } else {
+                throw new Exception();
+            }
+
+            return new Params(operandValue, value1, value2);
+
+        } catch (Exception ex) {
+            throw new IllegalArgumentException("Invalid query parameters provided");
         }
     }
 }

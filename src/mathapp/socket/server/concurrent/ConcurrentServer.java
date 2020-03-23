@@ -1,5 +1,6 @@
 package mathapp.socket.server.concurrent;
 
+import mathapp.ServerBase;
 import mathapp.common.Logger;
 import mathapp.common.Colors;
 import mathapp.common.Constants;
@@ -10,35 +11,39 @@ import mathapp.socket.server.ServerThread;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ConcurrentServer {
+public class ConcurrentServer implements ServerBase {
+
+    private boolean running;
+    private int connectionCount;
+    private ServerConnectionLog log;
+    private ThreadManager threadManager;
 
     public ConcurrentServer() {
-        boolean running = true;
-        int connectionCount = 0;
+        this.running = true;
+        this.connectionCount = 0;
+        this.log = new ServerConnectionLog();
+        this.threadManager = new ThreadManager();
+    }
 
-        ThreadManager threadManager = new ThreadManager();
-
-        ServerConnectionLog log = new ServerConnectionLog();
+    public void start() {
         ServerConnection connection;
-
         Socket client;
 
         try {
             ServerSocket serverSocket = new ServerSocket(Constants.PORT);
             Logger.server("Concurrent server listening on port " + Colors.ANSI_YELLOW + Constants.PORT + Colors.ANSI_RESET);
 
-            while (running) {
+            while (this.running) {
                 try {
                     client = serverSocket.accept();
-                    connectionCount++;
+                    this.connectionCount++;
 
                     threadManager.closeCompleted();
 
-                    connection = new ServerConnection(client, connectionCount, log);
+                    connection = new ServerConnection(client, this.connectionCount, this.log);
                     Logger.server(Logger.formatId(connection.getId()) + "Client connected from " + connection.getIpAddress());
 
-                    threadManager.addThread(new ServerThread(connection));
-
+                    this.threadManager.addThread(new ServerThread(connection));
                 } catch (Exception ex) {
                     Logger.error(ex);
                 }

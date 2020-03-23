@@ -4,21 +4,26 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 
+import mathapp.ServerBase;
 import mathapp.common.*;
 import mathapp.socket.server.Request;
 import mathapp.socket.server.ServerConnection;
 import mathapp.socket.server.ServerConnectionLog;
 
-public class IterativeServer {
+public class IterativeServer implements ServerBase {
+
+    private boolean running;
+    private int connectionCount, requestCount;
+    private ServerConnectionLog log;
 
     public IterativeServer() {
-        boolean running = true;
-        int connectionCount = 0, requestCount;
+        this.running = true;
+        this.connectionCount = 0;
+        this.requestCount = 0;
+        this.log = new ServerConnectionLog();
+    }
 
-        ServerConnectionLog log = new ServerConnectionLog();
-        ServerConnection connection;
-        Request request;
-
+    public void start() {
         Socket client;
         String data;
 
@@ -26,17 +31,19 @@ public class IterativeServer {
             ServerSocket serverSocket = new ServerSocket(Constants.PORT);
             Logger.server("Iterative server listening on port " + Colors.ANSI_YELLOW + Constants.PORT + Colors.ANSI_RESET);
 
-            while (running) {
+            ServerConnection connection;
+            Request request;
+
+            while (this.running) {
                 try {
                     client = serverSocket.accept();
-                    connectionCount++;
-                    connection = new ServerConnection(client, connectionCount, log);
-                    requestCount = 0;
+                    this.connectionCount++;
+                    this.requestCount = 0;
+
+                    connection = new ServerConnection(client, this.connectionCount, this.log);
 
                     try {
-//                        connection.getSocket().send("SERVER-Connection successful");
                         Logger.server(Logger.formatId(connection.getId()) + "Client connected from " + connection.getIpAddress());
-
                         connection.getSocket().send(ResponseType.MESSAGE, "Connected");
 
                         Params params;
@@ -44,13 +51,13 @@ public class IterativeServer {
 
                         while ((data = connection.getSocket().receive()) != null) {
                             try {
-                                requestCount++;
+                                this.requestCount++;
                                 params = Params.fromString(data);
 
                                 result = MathService.getResult(params);
 
-                                request = connection.addRequest(params, requestCount, result);
-                                Logger.worker(Logger.formatId(request.getId()) + params.buildString() + " (" + params.toString() + ") Result: " + result);
+                                request = connection.addRequest(params, this.requestCount, result);
+                                Logger.server(Logger.formatId(request.getId()) + params.buildString() + " (" + params.toString() + ") Result: " + result);
                                 connection.getSocket().send(ResponseType.RESULT, result);
 
                             } catch (Exception ex) {

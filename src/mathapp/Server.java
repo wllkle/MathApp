@@ -8,8 +8,9 @@ import mathapp.socket.server.concurrent.ConcurrentServer;
 import java.util.Scanner;
 
 public class Server {
+    private static ServerBase server;
+
     public static void main(String[] args) {
-        Thread thread = null;
         boolean acceptedValue = false;
         String input;
 
@@ -19,34 +20,42 @@ public class Server {
         Logger.system("[1] Iterative");
         Logger.system("[2] Concurrent");
         Logger.system("[3] HTTP");
-        Logger.input();
-
 
         while (!acceptedValue) {
-            input = scanner.next();
+            Logger.input();
+            input = scanner.nextLine();
             if (input.length() > 0) {
                 switch (input.substring(0, 1)) {
                     case "1":
-                        new IterativeServer();
+                        setServer(new IterativeServer());
                         break;
                     case "2":
-                        new ConcurrentServer();
+                        setServer(new ConcurrentServer());
                         break;
                     case "3":
-                        new HTTPServer();
+                        setServer(new HTTPServer());
                         break;
                     default:
-                        Logger.input();
+                        server = null;
                         break;
                 }
             }
 
-            if (thread != null) {
+            if (server != null) {
                 acceptedValue = true;
             }
         }
 
         Logger.blank();
-        thread.start();
+        server.start();
+    }
+
+    private static void setServer(Object serverObj) {
+        try {
+            server = (ServerBase) serverObj;
+        } catch (Exception ex) {
+            server = null;
+            Logger.error(ex);
+        }
     }
 }

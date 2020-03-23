@@ -1,26 +1,18 @@
 package mathapp.http.server;
 
+import mathapp.ServerBase;
 import mathapp.common.Constants;
 import mathapp.common.Logger;
 
 import java.net.InetSocketAddress;
 import java.util.*;
 import java.io.*;
+
 import com.sun.net.httpserver.*;
 import mathapp.common.MathService;
+import mathapp.common.Params;
 
-public class HTTPServer {
-    public HTTPServer() {
-        try {
-            HttpServer server = HttpServer.create(new InetSocketAddress(Constants.PORT), 0);
-            Logger.server("HTTP server started");
-            server.createContext("/calc", new CalcContextHandler());
-            server.setExecutor(null); // creates a default executor
-            server.start();
-        } catch (IOException ex) {
-            Logger.error(ex);
-        }
-    }
+public class HTTPServer implements ServerBase {
 
     // registered handler class for named context
     static class CalcContextHandler implements HttpHandler {
@@ -50,13 +42,17 @@ public class HTTPServer {
 
         // handle a HTTP GET request
         static String handleGET(HttpExchange request) throws IOException, NumberFormatException {
-            Logger.server(request.toString());
             Map<String, String> queryParameters = getQueryParameters(request);
 
-            String calc = queryParameters.getOrDefault("c", "");
-
-            
-            return "reee";
+            try {
+                Params params = Params.fromQueryString(queryParameters);
+                String result = MathService.getResult(params);
+                Logger.server("Result " + result);
+                return result;
+            } catch (Exception ex) {
+                Logger.error(ex);
+                return "";
+            }
         }
 
         // parse request query parameters into a Map
@@ -74,6 +70,18 @@ public class HTTPServer {
                 }
             }
             return result;
+        }
+    }
+
+    public void start() {
+        try {
+            HttpServer server = HttpServer.create(new InetSocketAddress(Constants.PORT), 0);
+            Logger.server("HTTP server started");
+            server.createContext("/calc", new CalcContextHandler());
+            server.setExecutor(null); // creates a default executor
+            server.start();
+        } catch (IOException ex) {
+            Logger.error(ex);
         }
     }
 }
