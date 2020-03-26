@@ -53,7 +53,6 @@ public class IterativeServer implements ServerBase {
                             try {
                                 this.requestCount++;
                                 params = Params.fromString(data);
-
                                 result = MathService.getResult(params);
 
                                 request = connection.addRequest(params, this.requestCount, result);

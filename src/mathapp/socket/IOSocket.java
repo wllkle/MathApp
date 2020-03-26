@@ -41,12 +41,16 @@ public class IOSocket {
         return Colors.ANSI_GREEN + this.socket.getInetAddress().toString().replace('/', ' ').trim() + ":" + this.socket.getPort() + Colors.ANSI_RESET;
     }
 
-    // sends a message across the socket
-    public void send(ResponseType type, String message) throws IOException {
-        output.println(String.join("-", type.name(), message));
+    public void send(String message) throws IOException {
+        output.println(message);
         //The ensuing flush method call is necessary for the data to
         // be written to the socket data stream before the socket is closed.
         output.flush();
+    }
+
+    // sends a message across the socket
+    public void send(ResponseType type, String message) throws IOException {
+        this.send(String.join("-", type.name(), message));
     }
 
     // receives a message across the socket

@@ -2,11 +2,8 @@ package mathapp.common;
 
 public class Response {
     private ResponseType type;
-    private String message;
 
-    public Response(String type, String message) {
-        this.message = message;
-
+    private Response(String type, String message) {
         switch (type) {
             case "ERROR":
                 Logger.error(message);
@@ -26,10 +23,6 @@ public class Response {
 
     public ResponseType getType() {
         return type;
-    }
-
-    public String getMessage() {
-        return message;
     }
 
     public static Response fromString(String data) throws Exception {

@@ -45,6 +45,29 @@ public class Params {
         }
     }
 
+    public String toQueryString() {
+        String safeOperand;
+        switch (this.operand) {
+            default:
+            case "+":
+                safeOperand = "a";
+                break;
+            case "-":
+                safeOperand = "s";
+                break;
+            case "*":
+                safeOperand = "m";
+                break;
+            case "/":
+                safeOperand = "d";
+                break;
+            case "^":
+                safeOperand = "e";
+                break;
+        }
+        return "?arg1=" + arg1 + "&arg2=" + arg2 + "&operand=" + safeOperand;
+    }
+
     public static Params fromQueryString(Map<String, String> queryParameters) throws IllegalArgumentException {
         String operandValue;
         double value1, value2;

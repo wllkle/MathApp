@@ -35,7 +35,7 @@ public class Client extends ClientBase {
                     }
 
                     params = getValidInput(input);
-                    socket.send(ResponseType.RESULT, params.buildString());
+                    socket.send(params.buildString());
 
                 } catch (Exception ex) {
                     Logger.error(ex);

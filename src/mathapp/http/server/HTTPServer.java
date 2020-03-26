@@ -1,25 +1,34 @@
 package mathapp.http.server;
 
 import mathapp.ServerBase;
-import mathapp.common.Constants;
-import mathapp.common.Logger;
+import mathapp.common.*;
 
 import java.net.InetSocketAddress;
 import java.util.*;
 import java.io.*;
 
 import com.sun.net.httpserver.*;
-import mathapp.common.MathService;
-import mathapp.common.Params;
 
 public class HTTPServer implements ServerBase {
+
+    public void start() {
+        try {
+            HttpServer server = HttpServer.create(new InetSocketAddress(Constants.PORT), 0);
+            Logger.server("HTTP server started");
+            server.createContext("/calc", new CalcContextHandler());
+            server.setExecutor(null); // creates a default executor
+            server.start();
+        } catch (IOException ex) {
+            Logger.error(ex);
+        }
+    }
 
     // registered handler class for named context
     static class CalcContextHandler implements HttpHandler {
 
         @Override
         public void handle(HttpExchange request) throws IOException {
-            Logger.server(request.getRequestMethod() + " " + request.getRequestURI().toString());
+            Logger.server(Colors.ANSI_YELLOW + request.getRequestMethod() + Colors.ANSI_RESET + " " + request.getRequestURI().toString());
             //set to text/html for machine to machine communication
             request.getResponseHeaders().set("Content-Type", "text/html");
 
@@ -41,13 +50,13 @@ public class HTTPServer implements ServerBase {
         }
 
         // handle a HTTP GET request
-        static String handleGET(HttpExchange request) throws IOException, NumberFormatException {
+        static String handleGET(HttpExchange request) throws NumberFormatException {
             Map<String, String> queryParameters = getQueryParameters(request);
 
             try {
                 Params params = Params.fromQueryString(queryParameters);
                 String result = MathService.getResult(params);
-                Logger.server("Result " + result);
+                Logger.server(params.buildString() + " (" + params.toString() + ") Result: " + result);
                 return result;
             } catch (Exception ex) {
                 Logger.error(ex);
@@ -70,18 +79,6 @@ public class HTTPServer implements ServerBase {
                 }
             }
             return result;
-        }
-    }
-
-    public void start() {
-        try {
-            HttpServer server = HttpServer.create(new InetSocketAddress(Constants.PORT), 0);
-            Logger.server("HTTP server started");
-            server.createContext("/calc", new CalcContextHandler());
-            server.setExecutor(null); // creates a default executor
-            server.start();
-        } catch (IOException ex) {
-            Logger.error(ex);
         }
     }
 }
