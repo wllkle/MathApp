@@ -4,15 +4,19 @@ public class MathService {
     private static double add(double a, double b) {
         return a + b;
     }
+
     private static double sub(double a, double b) {
         return a - b;
     }
+
     private static double mul(double a, double b) {
         return a * b;
     }
+
     private static double div(double a, double b) {
         return a / b;
     }
+
     private static double exp(double a, double b) {
         try {
             return Math.pow(a, b);
