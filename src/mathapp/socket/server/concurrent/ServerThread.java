@@ -1,21 +1,25 @@
-package mathapp.socket.server;
+package mathapp.socket.server.concurrent;
+
+import java.net.SocketException;
 
 import mathapp.common.Logger;
 import mathapp.common.MathService;
 import mathapp.common.Params;
 import mathapp.common.ResponseType;
+import mathapp.socket.server.Request;
+import mathapp.socket.server.ServerConnection;
 
-import java.net.SocketException;
+// an instance of this class is created to service each client connection
 
 public class ServerThread extends Thread {
 
     private ServerConnection connection;
 
-    public ServerThread(ServerConnection connection) {
+    ServerThread(ServerConnection connection) {
         this.connection = connection;
     }
 
-    public ServerConnection getConnection() {
+    ServerConnection getConnection() {
         return this.connection;
     }
 
@@ -33,14 +37,20 @@ public class ServerThread extends Thread {
 
             this.connection.getSocket().send(ResponseType.MESSAGE, "Connected");
 
+            // while client is connected
             while ((data = this.connection.getSocket().receive()) != null) {
                 try {
+                    // this block gets the parameters for the calculation from the client, performs
+                    // the necessary calculation and returns the necessary result back to the client
+
                     requestCount++;
                     params = Params.fromString(data);
                     result = MathService.getResult(params);
 
                     request = this.connection.addRequest(params, requestCount, result);
-                    Logger.worker(Logger.formatId(request.getId()) + params.buildString() + " (" + params.toString() + ") Result: " + result);
+                    Logger.worker(
+                        Logger.formatId(request.getId()) + params.buildString() + " (" + params
+                            .toString() + ") Result: " + result);
                     this.connection.getSocket().send(ResponseType.RESULT, result);
 
                 } catch (Exception ex) {

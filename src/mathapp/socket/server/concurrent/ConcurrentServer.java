@@ -6,10 +6,11 @@ import mathapp.common.Colors;
 import mathapp.common.Constants;
 import mathapp.socket.server.ServerConnection;
 import mathapp.socket.server.ServerConnectionLog;
-import mathapp.socket.server.ServerThread;
 
 import java.net.ServerSocket;
 import java.net.Socket;
+
+// this class handles the connection request and starts a ServerThread for each connection
 
 public class ConcurrentServer implements ServerBase {
 
@@ -30,15 +31,18 @@ public class ConcurrentServer implements ServerBase {
         Socket client;
 
         try {
+            // establishes port for clients to connect through
             ServerSocket serverSocket = new ServerSocket(Constants.PORT);
+
             Logger.server("Concurrent server listening on port " + Colors.ANSI_YELLOW + Constants.PORT + Colors.ANSI_RESET);
 
             while (this.running) {
                 try {
+                    // waits for client to connect to server
                     client = serverSocket.accept();
                     this.connectionCount++;
 
-                    threadManager.closeCompleted();
+                    this.threadManager.closeCompleted();
 
                     connection = new ServerConnection(client, this.connectionCount, this.log);
                     Logger.server(Logger.formatId(connection.getId()) + "Client connected from " + connection.getIpAddress());

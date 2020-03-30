@@ -1,7 +1,7 @@
 package mathapp.common;
 
-// Class Colors is used to collect together all the constant definitions used in
-// printing text in a variety of colours.
+// this class collect together all the constant definitions used in
+// printing text in a variety of colours
 
 public class Colors {
     public static final String ANSI_RESET = "\u001B[0m";

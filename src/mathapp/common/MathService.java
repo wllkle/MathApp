@@ -1,22 +1,21 @@
 package mathapp.common;
 
+// MathService is used by all three server types, the getResult method is supplied with a Params
+// object and it returns the result as a string
+
 public class MathService {
     private static double add(double a, double b) {
         return a + b;
     }
-
     private static double sub(double a, double b) {
         return a - b;
     }
-
     private static double mul(double a, double b) {
         return a * b;
     }
-
     private static double div(double a, double b) {
         return a / b;
     }
-
     private static double exp(double a, double b) {
         try {
             return Math.pow(a, b);

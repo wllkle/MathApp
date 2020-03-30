@@ -7,6 +7,8 @@ import mathapp.socket.server.concurrent.ConcurrentServer;
 
 import java.util.Scanner;
 
+// this is the entry-point for server execution, here a decision is made on which type of server to run
+
 public class Server {
     private static ServerBase server;
 

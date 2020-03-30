@@ -1,9 +1,12 @@
 package mathapp.common;
 
 import java.io.BufferedReader;
-import java.io.PrintWriter;
+
+// this class contain generic methods for managing and validating user input
 
 public class ClientBase {
+
+    // method attempts to obtain a valid calculation command from the user
     protected static Params getValidInput(BufferedReader input) {
 
         Params params = null;
@@ -13,7 +16,7 @@ public class ClientBase {
         boolean error;
         int operandIndex;
 
-        Logger.client("Please enter an calculation eg. 89 - 36.5");
+        Logger.client("Please enter a calculation eg. 89 - 36.5");
 
         while (params == null) {
             error = false;
@@ -91,6 +94,7 @@ public class ClientBase {
         return params;
     }
 
+    // method attempts to obtain a yes/no response from user
     protected static boolean getYesNo(BufferedReader input, String message) {
         boolean valueAcquired = false, value = false;
         Logger.client(message + " y/n");
@@ -121,10 +125,5 @@ public class ClientBase {
 
     private static String insertString(String originalString, String stringToBeInserted, int index) {
         return new StringBuilder(originalString).insert(index, stringToBeInserted).toString();
-    }
-
-    protected static void respond(PrintWriter pw, String data) {
-        pw.println(data);
-        pw.flush();
     }
 }

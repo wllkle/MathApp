@@ -2,6 +2,8 @@ package mathapp.common;
 
 import java.time.LocalTime;
 
+// this class contains a range of static methods used for logging out data to the console
+
 public class Logger {
 
     private static String log(LogType type, String message) {
@@ -94,7 +96,6 @@ public class Logger {
     }
 
     public static void error(Exception ex) {
-//        ex.printStackTrace();
         String msg = ex.getMessage();
         try {
             msg = msg.substring(0, 1).toUpperCase() + msg.substring(1);

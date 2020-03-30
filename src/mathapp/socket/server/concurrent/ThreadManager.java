@@ -1,11 +1,12 @@
 package mathapp.socket.server.concurrent;
 
 import mathapp.common.Logger;
-import mathapp.socket.server.ServerThread;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.UUID;
+
+// this class manages running ServerThreads
 
 class ThreadManager {
     private HashMap<String, ServerThread> threads;
@@ -14,12 +15,14 @@ class ThreadManager {
         this.threads = new HashMap<>();
     }
 
+    // adds a new ServerThread and starts it
     void addThread(ServerThread thread) {
         Logger.server(Logger.formatId(thread.getConnection().getId()) + "Starting worker thread");
         thread.start();
         this.threads.put(UUID.randomUUID().toString().toUpperCase(), thread);
     }
 
+    // iterates over the map of ServerThreads and removes any which have been interrupted
     void closeCompleted() {
         for (Entry<String, ServerThread> threadItem : this.threads.entrySet()) {
             try {

@@ -9,6 +9,8 @@ import java.io.*;
 
 import com.sun.net.httpserver.*;
 
+// this class implements an HTTP server
+
 public class HTTPServer implements ServerBase {
 
     public void start() {
@@ -44,6 +46,7 @@ public class HTTPServer implements ServerBase {
             } else {
                 request.sendResponseHeaders(501, 0); //  501 - not implemented
             }
+
             // write response and close
             request.getResponseBody().write(response.getBytes());
             request.getResponseBody().close();
@@ -64,7 +67,7 @@ public class HTTPServer implements ServerBase {
             }
         }
 
-        // parse request query parameters into a Map
+        // parse request query parameters into a map
         static Map<String, String> getQueryParameters(HttpExchange request) {
             Map<String, String> result = new HashMap<>();
             String query = request.getRequestURI().getQuery();

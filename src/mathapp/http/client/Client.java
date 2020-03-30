@@ -7,6 +7,8 @@ import org.apache.http.client.fluent.Request;
 import mathapp.common.*;
 import mathapp.common.ClientBase;
 
+// this class provides the client for the HTTP server
+
 public class Client extends ClientBase {
 
     public static void main(String[] args) {
@@ -16,8 +18,11 @@ public class Client extends ClientBase {
         String data;
 
         while (running) {
+            // getting a valid Params object from the user input
             params = getValidInput(input);
+
             try {
+                // sending the command string to the server via a HTTP GET request
                 data = Request.Get(Constants.BASE_URI + params.toQueryString())
                         .connectTimeout(1000)
                         .socketTimeout(1000)

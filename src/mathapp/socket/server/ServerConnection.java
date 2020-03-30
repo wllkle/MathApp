@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 
+// this class is used for managing the server's IOSocket, and also handles logging
+
 public class ServerConnection {
     private IOSocket socket;
     private String id;
@@ -39,6 +41,8 @@ public class ServerConnection {
     }
 
     public Request addRequest(Params params, int number, String result) {
+        // this method is used to maintain the ServerConnectionLog which is given as a parameter to the constructor
+
         Request request = new Request(this, params, number, result);
         this.requests.add(request);
         this.log.addItem(this.id, this);

@@ -11,6 +11,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
+// used by both client and server, wraps a java.net.Socket object and adds send()
+// and receive() methods for communication
+
 public class IOSocket {
     private Socket socket;
     private BufferedReader input;

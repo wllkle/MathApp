@@ -10,10 +10,16 @@ import mathapp.socket.server.Request;
 import mathapp.socket.server.ServerConnection;
 import mathapp.socket.server.ServerConnectionLog;
 
+// this class handles the connection request and the transaction involved in the call from a client
+
 public class IterativeServer implements ServerBase {
 
+    // a boolean flag to control the while loop that handles connections and their requests
     private boolean running;
+
+    // integer values used for generating ID's for connections/requests
     private int connectionCount, requestCount;
+
     private ServerConnectionLog log;
 
     public IterativeServer() {
@@ -23,11 +29,13 @@ public class IterativeServer implements ServerBase {
         this.log = new ServerConnectionLog();
     }
 
+    // called from mathapp.Server
     public void start() {
         Socket client;
         String data;
 
         try {
+            // establishes port for clients to connect through
             ServerSocket serverSocket = new ServerSocket(Constants.PORT);
             Logger.server("Iterative server listening on port " + Colors.ANSI_YELLOW + Constants.PORT + Colors.ANSI_RESET);
 
@@ -36,6 +44,7 @@ public class IterativeServer implements ServerBase {
 
             while (this.running) {
                 try {
+                    // waits for client to connect to server
                     client = serverSocket.accept();
                     this.connectionCount++;
                     this.requestCount = 0;
@@ -49,8 +58,12 @@ public class IterativeServer implements ServerBase {
                         Params params;
                         String result;
 
+                        // while client is connected
                         while ((data = connection.getSocket().receive()) != null) {
                             try {
+                                // this block gets the parameters for the calculation from the client, performs
+                                // the necessary calculation and returns the necessary result back to the client
+
                                 this.requestCount++;
                                 params = Params.fromString(data);
                                 result = MathService.getResult(params);
@@ -67,6 +80,10 @@ public class IterativeServer implements ServerBase {
                                 }
                             }
                         }
+
+                        // at this point the client has disconnected from the server so the client's
+                        // connection will be closed and the server will loop back round waiting for
+                        // another client to connect
 
                         Logger.server(Logger.formatId(connection.getId()) + "Client disconnected");
                         client.close();

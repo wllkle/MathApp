@@ -2,6 +2,10 @@ package mathapp.common;
 
 import java.util.Map;
 
+// this class manages parameters for the maths calculation, involving one operand and two arguments,
+// it builds builds the calculation string in the format required to be communicated from client
+// and server
+
 public class Params {
 
     private String operand;
@@ -24,27 +28,12 @@ public class Params {
         return args;
     }
 
+    // creates the calculation as a string in the format required by the server
     public String buildString() {
         return String.join(":", operand, Double.toString(arg1), Double.toString(arg2));
     }
 
-    @Override
-    public String toString() {
-        return Colors.ANSI_YELLOW + String.join(" " + operand + " ", Double.toString(arg1), Double.toString(arg2)) + Colors.ANSI_RESET;
-    }
-
-    public static Params fromString(String value) throws IllegalArgumentException {
-        try {
-            String[] params = value.split(":");
-            if (params.length != 3) {
-                throw new Exception();
-            }
-            return new Params(params[0], Double.parseDouble(params[1]), Double.parseDouble(params[2]));
-        } catch (Exception ex) {
-            throw new IllegalArgumentException("Value: " + value + " Error" + ex.getMessage());
-        }
-    }
-
+    // creates the calculation as a query string required by the HTTP server
     public String toQueryString() {
         String safeOperand;
         switch (this.operand) {
@@ -68,6 +57,26 @@ public class Params {
         return "?arg1=" + arg1 + "&arg2=" + arg2 + "&operand=" + safeOperand;
     }
 
+    // presents calculation in a human-readable format
+    @Override
+    public String toString() {
+        return Colors.ANSI_YELLOW + String.join(" " + operand + " ", Double.toString(arg1), Double.toString(arg2)) + Colors.ANSI_RESET;
+    }
+
+    // method decomposes received string by the server into a Params object
+    public static Params fromString(String value) throws IllegalArgumentException {
+        try {
+            String[] params = value.split(":");
+            if (params.length != 3) {
+                throw new Exception();
+            }
+            return new Params(params[0], Double.parseDouble(params[1]), Double.parseDouble(params[2]));
+        } catch (Exception ex) {
+            throw new IllegalArgumentException("Value: " + value + " Error" + ex.getMessage());
+        }
+    }
+
+    // method decomposes a map of query string parameters into a Params object
     public static Params fromQueryString(Map<String, String> queryParameters) throws IllegalArgumentException {
         String operandValue;
         double value1, value2;
