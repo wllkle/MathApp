@@ -2,28 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cedbbda6-f614-4d37-8955-38efd66e2621" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/rob.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mathapp/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/ServerBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/ServerBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/common/ClientBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/common/ClientBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/common/Colors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/common/Colors.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/common/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/common/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/common/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/common/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/common/MathService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/common/MathService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/common/Params.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/common/Params.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/common/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/common/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/http/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/http/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/http/server/HTTPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/http/server/HTTPServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/socket/IOSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/IOSocket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/socket/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/socket/server/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/server/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/socket/server/ServerConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/server/ServerConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/socket/server/ServerConnectionLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/server/ServerConnectionLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/socket/server/ServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ServerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ConcurrentServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ConcurrentServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ThreadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/server/concurrent/ThreadManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mathapp/socket/server/iterative/IterativeServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/server/iterative/IterativeServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mathapp/http/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/http/client/HttpClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mathapp/socket/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mathapp/socket/client/SocketClient.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,8 +23,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -95,25 +77,12 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Server">
-    <configuration name="Client (1)" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mathapp.socket.client.Client" />
+    <configuration name="Client 2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="mathapp.Client" />
       <module name="MathApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="mathapp.socket.client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Client (http)" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="mathapp.http.client.Client" />
-      <module name="MathApp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="mathapp.http.client.*" />
+          <option name="PATTERN" value="mathapp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -122,11 +91,11 @@
       </method>
     </configuration>
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mathapp.socket.client.Client" />
+      <option name="MAIN_CLASS_NAME" value="mathapp.Client" />
       <module name="MathApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="mathapp.socket.client.*" />
+          <option name="PATTERN" value="mathapp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -148,15 +117,13 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Client (1)" />
-      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Client 2" />
       <item itemvalue="Application.Server" />
-      <item itemvalue="Application.Client (http)" />
+      <item itemvalue="Application.Client" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Server" />
-        <item itemvalue="Application.Client (http)" />
         <item itemvalue="Application.Client" />
       </list>
     </recent_temporary>
@@ -186,6 +153,7 @@
       <workItem from="1584810826474" duration="8275000" />
       <workItem from="1584898519815" duration="12173000" />
       <workItem from="1585594047857" duration="9117000" />
+      <workItem from="1585668355865" duration="422000" />
     </task>
     <servers />
   </component>
@@ -197,7 +165,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

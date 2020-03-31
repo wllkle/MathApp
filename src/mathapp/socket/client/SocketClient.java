@@ -8,9 +8,9 @@ import mathapp.socket.IOSocket;
 
 // this class provides the client for both the iterative and concurrent servers
 
-public class Client extends ClientBase {
+public class SocketClient extends ClientBase {
 
-    public static void main(String[] args) {
+    public SocketClient() {
         IOSocket socket;
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         Params params;

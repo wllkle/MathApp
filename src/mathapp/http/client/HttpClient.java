@@ -9,9 +9,9 @@ import mathapp.common.ClientBase;
 
 // this class provides the client for the HTTP server
 
-public class Client extends ClientBase {
+public class HttpClient extends ClientBase {
 
-    public static void main(String[] args) {
+    public HttpClient() {
         boolean running = true;
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         Params params;
