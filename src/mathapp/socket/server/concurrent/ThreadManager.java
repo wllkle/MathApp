@@ -26,7 +26,7 @@ class ThreadManager {
     void closeCompleted() {
         for (Entry<String, ServerThread> threadItem : this.threads.entrySet()) {
             try {
-                if (!threadItem.getValue().isInterrupted()) {
+                if (threadItem.getValue().isInterrupted()) {
                     Logger.server(Logger.formatId(threadItem.getValue().getConnection().getId()) + "Ending worker thread");
                     this.threads.remove(threadItem.getKey());
                 }
