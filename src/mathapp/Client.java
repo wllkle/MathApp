@@ -1,6 +1,7 @@
 package mathapp;
 
 import java.util.Scanner;
+import mathapp.common.Constants;
 import mathapp.common.Logger;
 import mathapp.http.client.HttpClient;
 import mathapp.socket.client.SocketClient;
@@ -12,6 +13,8 @@ public class Client {
     public static void main(String[] args) {
         boolean acceptedValue = false;
         String input;
+
+        System.out.println(Constants.APP_TITLE);
 
         Scanner scanner = new Scanner(System.in);
 

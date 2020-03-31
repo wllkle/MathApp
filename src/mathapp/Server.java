@@ -1,5 +1,6 @@
 package mathapp;
 
+import mathapp.common.Constants;
 import mathapp.common.Logger;
 import mathapp.http.server.HTTPServer;
 import mathapp.socket.server.iterative.IterativeServer;
@@ -17,6 +18,8 @@ public class Server {
         String input;
 
         Scanner scanner = new Scanner(System.in);
+
+        System.out.println(Constants.APP_TITLE);
 
         Logger.system("Which type of server do you wish to run?");
         Logger.system("[1] Iterative");
