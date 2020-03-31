@@ -4,7 +4,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 
-import mathapp.ServerBase;
+import mathapp.common.ServerBase;
 import mathapp.common.*;
 import mathapp.socket.server.Request;
 import mathapp.socket.server.ServerConnection;

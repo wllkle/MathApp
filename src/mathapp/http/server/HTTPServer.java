@@ -1,6 +1,6 @@
 package mathapp.http.server;
 
-import mathapp.ServerBase;
+import mathapp.common.ServerBase;
 import mathapp.common.*;
 
 import java.net.InetSocketAddress;

@@ -1,4 +1,4 @@
-package mathapp;
+package mathapp.common;
 
 // this interface is being used to ensure all three server types (iterative, concurrent and HTTP)
 // can be treated equally by mathapp.Server

@@ -1,6 +1,6 @@
 package mathapp.socket.server.concurrent;
 
-import mathapp.ServerBase;
+import mathapp.common.ServerBase;
 import mathapp.common.Logger;
 import mathapp.common.Colors;
 import mathapp.common.Constants;
