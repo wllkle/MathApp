@@ -10,17 +10,17 @@ public class ClientBase {
     protected static Params getValidInput(BufferedReader input) {
 
         Params params = null;
-        String test, permittedOperands = "+-*/^";
+        String test, permittedOperators = "+-*/^";
         String[] testElements;
         double arg1, arg2;
         boolean error;
-        int operandIndex;
+        int operatorIndex;
 
         Logger.client("Please enter a calculation eg. 89 - 36.5");
 
         while (params == null) {
             error = false;
-            operandIndex = -1;
+            operatorIndex = -1;
 
             Logger.input();
 
@@ -35,22 +35,22 @@ public class ClientBase {
                     continue;
                 }
 
-                // find index of operand
+                // find index of operator
                 for (int i = 0; i < test.length(); i++) {
-                    for (char c : permittedOperands.toCharArray()) {
+                    for (char c : permittedOperators.toCharArray()) {
                         if (test.charAt(i) == c) {
-                            if (operandIndex == -1) {
-                                operandIndex = i;
+                            if (operatorIndex == -1) {
+                                operatorIndex = i;
                             } else {
-                                Logger.error("Equation invalid, please provide one operand");
+                                Logger.error("Equation invalid, please provide one operator");
                                 error = true;
                                 break;
                             }
                         }
                     }
-                    if (error || (i == test.length() - 1 && operandIndex == -1)) {
+                    if (error || (i == test.length() - 1 && operatorIndex == -1)) {
                         if (!error) {
-                            Logger.error("No valid operand found, valid operands include '+', '-', '*', '/', '^'");
+                            Logger.error("No valid operator found, valid operators include '+', '-', '*', '/', '^'");
                             error = true;
                         }
                         break;
@@ -60,20 +60,20 @@ public class ClientBase {
                     continue;
                 }
 
-                if (operandIndex != -1) {
-                    if (operandIndex == 0 || operandIndex == test.length() - 1) {
-                        Logger.error("Somethings not quite right");
+                if (operatorIndex != -1) {
+                    if (operatorIndex == 0 || operatorIndex == test.length() - 1) {
+                        Logger.error("Something's not quite right");
                         continue;
                     }
 
-                    if (test.charAt(operandIndex + 1) != ' ') {
-                        test = insertString(test, " ", operandIndex + 1);
+                    if (test.charAt(operatorIndex + 1) != ' ') {
+                        test = insertString(test, " ", operatorIndex + 1);
                     }
-                    if (test.charAt(operandIndex - 1) != ' ') {
-                        test = insertString(test, " ", operandIndex);
+                    if (test.charAt(operatorIndex - 1) != ' ') {
+                        test = insertString(test, " ", operatorIndex);
                     }
                 } else {
-                    Logger.error("No valid operand found, valid operands include '+', '-', '*', '/', '^'");
+                    Logger.error("No valid operator found, valid operators include '+', '-', '*', '/', '^'");
                     continue;
                 }
 

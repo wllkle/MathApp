@@ -28,7 +28,7 @@ public class MathService {
     public static String getResult(Params params) {
         double result;
         double[] args = params.getArgs();
-        switch (params.getOperand()) {
+        switch (params.getOperator()) {
             case "+":
                 result = MathService.add(args[0], args[1]);
                 break;

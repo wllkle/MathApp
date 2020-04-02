@@ -2,23 +2,23 @@ package mathapp.common;
 
 import java.util.Map;
 
-// this class manages parameters for the maths calculation, involving one operand and two arguments,
+// this class manages parameters for the maths calculation, involving one operator and two arguments,
 // it builds builds the calculation string in the format required to be communicated from client
 // and server
 
 public class Params {
 
-    private String operand;
+    private String operator;
     private double arg1, arg2;
 
-    Params(String operand, double arg1, double arg2) {
-        this.operand = operand;
+    Params(String operator, double arg1, double arg2) {
+        this.operator = operator;
         this.arg1 = arg1;
         this.arg2 = arg2;
     }
 
-    public String getOperand() {
-        return operand;
+    public String getOperator() {
+        return operator;
     }
 
     public double[] getArgs() {
@@ -30,37 +30,37 @@ public class Params {
 
     // creates the calculation as a string in the format required by the server
     public String buildString() {
-        return String.join(":", operand, Double.toString(arg1), Double.toString(arg2));
+        return String.join(":", operator, Double.toString(arg1), Double.toString(arg2));
     }
 
     // creates the calculation as a query string required by the HTTP server
     public String toQueryString() {
-        String safeOperand;
-        switch (this.operand) {
+        String safeOperator;
+        switch (this.operator) {
             default:
             case "+":
-                safeOperand = "a";
+                safeOperator = "a";
                 break;
             case "-":
-                safeOperand = "s";
+                safeOperator = "s";
                 break;
             case "*":
-                safeOperand = "m";
+                safeOperator = "m";
                 break;
             case "/":
-                safeOperand = "d";
+                safeOperator = "d";
                 break;
             case "^":
-                safeOperand = "e";
+                safeOperator = "e";
                 break;
         }
-        return "?arg1=" + arg1 + "&arg2=" + arg2 + "&operand=" + safeOperand;
+        return "?arg1=" + arg1 + "&arg2=" + arg2 + "&operator=" + safeOperator;
     }
 
     // presents calculation in a human-readable format
     @Override
     public String toString() {
-        return Colors.ANSI_YELLOW + String.join(" " + operand + " ", Double.toString(arg1), Double.toString(arg2)) + Colors.ANSI_RESET;
+        return Colors.ANSI_YELLOW + String.join(" " + operator + " ", Double.toString(arg1), Double.toString(arg2)) + Colors.ANSI_RESET;
     }
 
     // method decomposes received string by the server into a Params object
@@ -78,29 +78,29 @@ public class Params {
 
     // method decomposes a map of query string parameters into a Params object
     public static Params fromQueryString(Map<String, String> queryParameters) throws IllegalArgumentException {
-        String operandValue;
+        String operatorValue;
         double value1, value2;
         try {
-            operandValue = queryParameters.get("operand");
+            operatorValue = queryParameters.get("operator");
             value1 = Double.parseDouble(queryParameters.get("arg1"));
             value2 = Double.parseDouble(queryParameters.get("arg2"));
 
-            if (operandValue.length() > 0) {
-                switch (operandValue.substring(0, 1)) {
+            if (operatorValue.length() > 0) {
+                switch (operatorValue.substring(0, 1)) {
                     case "a":
-                        operandValue = "+";
+                        operatorValue = "+";
                         break;
                     case "s":
-                        operandValue = "-";
+                        operatorValue = "-";
                         break;
                     case "m":
-                        operandValue = "*";
+                        operatorValue = "*";
                         break;
                     case "d":
-                        operandValue = "/";
+                        operatorValue = "/";
                         break;
                     case "e":
-                        operandValue = "^";
+                        operatorValue = "^";
                         break;
                     default:
                         throw new Exception();
@@ -109,7 +109,7 @@ public class Params {
                 throw new Exception();
             }
 
-            return new Params(operandValue, value1, value2);
+            return new Params(operatorValue, value1, value2);
 
         } catch (Exception ex) {
             throw new IllegalArgumentException("Invalid query parameters provided");
