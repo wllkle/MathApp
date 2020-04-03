@@ -53,7 +53,7 @@ public class IOSocket {
 
     // sends a message across the socket
     public void send(ResponseType type, String message) throws IOException {
-        this.send(String.join("-", type.name(), message));
+        this.send(String.join("#", type.name(), message));
     }
 
     // receives a message across the socket

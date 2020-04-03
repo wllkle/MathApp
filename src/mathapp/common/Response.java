@@ -30,7 +30,7 @@ public class Response {
 
     public static Response fromString(String data) throws Exception {
         try {
-            String[] responseElements = data.split("-");
+            String[] responseElements = data.split("#");
             return new Response(responseElements[0], responseElements[1]);
         } catch (Exception ex) {
             throw new Exception("Invalid response from server");
