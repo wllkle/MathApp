@@ -1,13 +1,18 @@
 package mathapp.http.server;
 
-import mathapp.common.ServerBase;
-import mathapp.common.*;
-
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
+import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.util.*;
-import java.io.*;
-
-import com.sun.net.httpserver.*;
+import java.util.HashMap;
+import java.util.Map;
+import mathapp.common.Colors;
+import mathapp.common.Constants;
+import mathapp.common.Logger;
+import mathapp.common.MathService;
+import mathapp.common.Params;
+import mathapp.common.ServerBase;
 
 // this class implements an HTTP server
 
@@ -30,7 +35,9 @@ public class HTTPServer implements ServerBase {
 
         @Override
         public void handle(HttpExchange request) throws IOException {
-            Logger.server(Colors.ANSI_YELLOW + request.getRequestMethod() + Colors.ANSI_RESET + " " + request.getRequestURI().toString());
+            Logger.server(
+                Colors.ANSI_YELLOW + request.getRequestMethod() + Colors.ANSI_RESET + " " + request
+                    .getRequestURI().toString());
             //set to text/html for machine to machine communication
             request.getResponseHeaders().set("Content-Type", "text/html");
 
@@ -39,7 +46,8 @@ public class HTTPServer implements ServerBase {
             if (request.getRequestMethod().equalsIgnoreCase("GET")) {
                 response = handleGET(request);
                 if (response.equals("")) {
-                    request.sendResponseHeaders(404, 0); // 404 bad request
+                    response = "Invalid query parameters provided";
+                    request.sendResponseHeaders(400, 0); // 400 bad request
                 } else {
                     request.sendResponseHeaders(200, 0); // 200 Ok
                 }
@@ -59,7 +67,8 @@ public class HTTPServer implements ServerBase {
             try {
                 Params params = Params.fromQueryString(queryParameters);
                 String result = MathService.getResult(params);
-                Logger.server(params.buildString() + " (" + params.toString() + ") Result: " + result);
+                Logger.server(
+                    params.buildString() + " (" + params.toString() + ") Result: " + result);
                 return result;
             } catch (Exception ex) {
                 Logger.error(ex);
