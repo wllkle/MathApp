@@ -1,6 +1,6 @@
 package mathapp.common;
 
-// provides storage for commonly used values
+// Provides storage for commonly used values
 
 public class Constants {
     public static final int PORT = 4628;

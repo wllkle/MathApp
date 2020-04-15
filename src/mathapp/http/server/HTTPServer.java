@@ -14,7 +14,7 @@ import mathapp.common.MathService;
 import mathapp.common.Params;
 import mathapp.common.ServerBase;
 
-// this class implements an HTTP server
+// This class implements an HTTP server
 
 public class HTTPServer implements ServerBase {
 
@@ -30,7 +30,7 @@ public class HTTPServer implements ServerBase {
         }
     }
 
-    // registered handler class for named context
+    // Registered handler class for named context
     static class CalcContextHandler implements HttpHandler {
 
         @Override
@@ -42,7 +42,7 @@ public class HTTPServer implements ServerBase {
             request.getResponseHeaders().set("Content-Type", "text/html");
 
             String response = "";
-            // handle request type
+            // Handle request type
             if (request.getRequestMethod().equalsIgnoreCase("GET")) {
                 response = handleGET(request);
                 if (response.equals("")) {
@@ -55,12 +55,12 @@ public class HTTPServer implements ServerBase {
                 request.sendResponseHeaders(501, 0); //  501 - not implemented
             }
 
-            // write response and close
+            // Write response and close
             request.getResponseBody().write(response.getBytes());
             request.getResponseBody().close();
         }
 
-        // handle a HTTP GET request
+        // Handle a HTTP GET request
         static String handleGET(HttpExchange request) throws NumberFormatException {
             Map<String, String> queryParameters = getQueryParameters(request);
 
@@ -76,7 +76,7 @@ public class HTTPServer implements ServerBase {
             }
         }
 
-        // parse request query parameters into a map
+        // Parse request query parameters into a map
         static Map<String, String> getQueryParameters(HttpExchange request) {
             Map<String, String> result = new HashMap<>();
             String query = request.getRequestURI().getQuery();

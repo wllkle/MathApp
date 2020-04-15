@@ -2,7 +2,7 @@ package mathapp.common;
 
 import java.time.LocalTime;
 
-// this class contains a range of static methods used for logging out data to the console
+// This class contains a range of static methods used for logging out data to the console
 
 public class Logger {
 

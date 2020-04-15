@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 
-// this class is used for managing the server's IOSocket, and also handles logging
+// This class is used for managing the server's IOSocket, and also handles logging
 
 public class ServerConnection {
     private IOSocket socket;

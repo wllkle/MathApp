@@ -10,7 +10,7 @@ import mathapp.socket.server.ServerConnectionLog;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-// this class handles the connection request and starts a ServerThread for each connection
+// This class handles the connection request and starts a ServerThread for each connection
 
 public class ConcurrentServer implements ServerBase {
 
@@ -31,14 +31,14 @@ public class ConcurrentServer implements ServerBase {
         Socket client;
 
         try {
-            // establishes port for clients to connect through
+            // Establishes port for clients to connect through
             ServerSocket serverSocket = new ServerSocket(Constants.PORT);
 
             Logger.server("Concurrent server listening on port " + Colors.ANSI_YELLOW + Constants.PORT + Colors.ANSI_RESET);
 
             while (this.running) {
                 try {
-                    // waits for client to connect to server
+                    // Waits for client to connect to server
                     client = serverSocket.accept();
                     this.connectionCount++;
 

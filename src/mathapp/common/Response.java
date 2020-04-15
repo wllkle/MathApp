@@ -1,6 +1,6 @@
 package mathapp.common;
 
-// this class is concerned with logging, fromString determines which type of log should
+// This class is concerned with logging, fromString determines which type of log should
 // be printed depending on the response from the server
 
 public class Response {

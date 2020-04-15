@@ -2,7 +2,7 @@ package mathapp.socket.server;
 
 import mathapp.common.Params;
 
-// the Request class is used for logging purposes
+// The Request class is used for logging purposes
 
 public class Request {
     private String id;

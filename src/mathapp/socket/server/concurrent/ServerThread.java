@@ -9,7 +9,7 @@ import mathapp.common.ResponseType;
 import mathapp.socket.server.Request;
 import mathapp.socket.server.ServerConnection;
 
-// an instance of this class is created to service each client connection
+// An instance of this class is created to service each client connection
 
 public class ServerThread extends Thread {
 
@@ -37,10 +37,10 @@ public class ServerThread extends Thread {
 
             this.connection.getSocket().send(ResponseType.MESSAGE, "Connected");
 
-            // while client is connected
+            // While client is connected
             while ((data = this.connection.getSocket().receive()) != null) {
                 try {
-                    // this block gets the parameters for the calculation from the client, performs
+                    // This block gets the parameters for the calculation from the client, performs
                     // the necessary calculation and returns the necessary result back to the client
 
                     requestCount++;

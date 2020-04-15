@@ -6,7 +6,7 @@ import mathapp.common.Logger;
 import mathapp.http.client.HttpClient;
 import mathapp.socket.client.SocketClient;
 
-// this is the entry-point for client execution, here a decision is made on which type of client to run
+// This is the entry-point for client execution, here a decision is made on which type of client to run
 
 public class Client {
 

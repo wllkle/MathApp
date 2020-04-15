@@ -2,13 +2,12 @@ package mathapp.common;
 
 import java.io.BufferedReader;
 
-// this class contain generic methods for managing and validating user input
+// This class contain generic methods for managing and validating user input
 
 public class ClientBase {
 
-    // method attempts to obtain a valid calculation command from the user
+    // Method attempts to obtain a valid calculation command from the user
     protected static Params getValidInput(BufferedReader input) {
-
         Params params = null;
         String test, permittedOperators = "+-*/^";
         String[] testElements;
@@ -27,15 +26,14 @@ public class ClientBase {
             try {
                 test = input.readLine().trim().replaceAll(" +", "");
 
-                // validate
-
-                // if input contains characters
+                // Validation
+                // If input contains characters
                 if (test.matches(".*[a-zA-Z]+.*")) {
                     Logger.error("Alphabetical characters are not permitted");
                     continue;
                 }
 
-                // find index of operator
+                // Find index of operator
                 for (int i = 0; i < test.length(); i++) {
                     for (char c : permittedOperators.toCharArray()) {
                         if (test.charAt(i) == c) {
@@ -94,7 +92,7 @@ public class ClientBase {
         return params;
     }
 
-    // method attempts to obtain a yes/no response from user
+    // Method attempts to obtain a yes/no response from user
     protected static boolean getYesNo(BufferedReader input, String message) {
         boolean valueAcquired = false, value = false;
         Logger.client(message + " y/n");

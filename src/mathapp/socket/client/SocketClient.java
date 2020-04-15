@@ -6,7 +6,7 @@ import java.net.*;
 import mathapp.common.*;
 import mathapp.socket.IOSocket;
 
-// this class provides the client for both the iterative and concurrent servers
+// This class provides the client for both the iterative and concurrent servers
 
 public class SocketClient extends ClientBase {
 
@@ -20,12 +20,12 @@ public class SocketClient extends ClientBase {
         try {
             Logger.client("Attempting to connect to server on port " + Constants.PORT);
 
-            // instantiates a new IOSocket using a port number in common with the server it wishes to connect to
+            // Instantiates a new IOSocket using a port number in common with the server it wishes to connect to
             socket = new IOSocket(new Socket("localhost", Constants.PORT));
 
             currentConnection:
             while ((data = socket.receive()) != null) {
-                // loops while client is connected to server, allowing one or many calculation requests
+                // Loops while client is connected to server, allowing one or many calculation requests
 
                 try {
                     response = Response.fromString(data);
@@ -40,10 +40,10 @@ public class SocketClient extends ClientBase {
                             break currentConnection;
                     }
 
-                    // getting a valid Params object from the user input
+                    // Getting a valid Params object from the user input
                     params = getValidInput(input);
 
-                    // sending the command string to the server
+                    // Sending the command string to the server
                     socket.send(params.buildString());
 
                 } catch (Exception ex) {

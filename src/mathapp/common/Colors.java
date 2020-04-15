@@ -1,6 +1,6 @@
 package mathapp.common;
 
-// this class collect together all the constant definitions used in
+// This class collect together all the constant definitions used in
 // printing text in a variety of colours
 
 public class Colors {
